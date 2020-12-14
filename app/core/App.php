@@ -5,7 +5,11 @@ class App
 {
     public function __construct()
     {
-        // GET ENDPOINTS
+        // PAGE HOME
+        Router::get('/', function () {
+            $this::call('home')->index();
+        });
+
 
         // EXTRA PAGE
         Router::get('/sample', function () {

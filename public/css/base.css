@@ -40,15 +40,13 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 13px;
     font-family: 'Quicksand', sans-serif;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--teal-darker);
-    color: var(--light);
 }
 
 body * {
@@ -67,36 +65,36 @@ h6 {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3.8rem;
 }
 
 h2 {
-    font-size: 3.5rem;
+    font-size: 3.3rem;
 }
 
 h3 {
-    font-size: 3rem;
+    font-size: 2.8rem;
 }
 
 h4 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
 }
 
 h5 {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 h6 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 0.4rem 0;
 }
 
 small {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
 }
 
 span,
@@ -107,7 +105,7 @@ button,
 table,
 th,
 td {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 /* !CONTAINER */
