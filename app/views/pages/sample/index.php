@@ -1,8 +1,4 @@
-<?php 
-    require_once VIEW_PATH . "templates/header.php"; 
-?>
-
-<h6 class="text-center">Here are sample to all components</h6>
+<h6 class="text-center mt-4">Here are sample to all components</h6>
 
 <div class="container">
 
@@ -85,7 +81,6 @@
     </div>
 </div>
 
-<?= $this::add_template('footer') ?>
 <script defer>
     var ctx = document.getElementById('sample_chart').getContext('2d');
     var chart = new Chart(ctx, {

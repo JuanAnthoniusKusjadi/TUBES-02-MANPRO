@@ -18,7 +18,9 @@
     </head>
 
     <body>
+        <?= $this::add_template('header') ?>
         <?= $content ?>
+        <?= $this::add_template('footer') ?>
     </body>
     
 </html>
