@@ -12,14 +12,6 @@ class Controller
         return $page;
     }
 
-    public static function auth_helper() {
-        return new AuthHelper;
-    }
-
-    public static function get_user() {
-        return $_SESSION['login_session'];
-    }
-
     public function redirect($tipe = null)
     {
         $page = rtrim($_SERVER['REQUEST_URI'], '/');

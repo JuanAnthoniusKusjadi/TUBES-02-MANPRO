@@ -5,16 +5,4 @@
             <h5 class="text-dark">Tubes-Manpro-2</h5>
         </div>
     </div>
-
-    <!-- <div class="navbar-right display-grid align-content-center justify-content-end">
-        <div class="dropdown">
-            <button onclick="toggleDropdown('dropdown')" class="dropdown-btn">
-                <?= isset($user_information) ? $user_information['username'] : 'dropdown' ?>
-                <span class="fa fa-caret-down ml-1"></span>
-            </button>
-            <div id="dropdown" class="dropdown-content">
-                <a href="./logout">logout</a>
-            </div>
-        </div>
-    </div>  -->
 </div>

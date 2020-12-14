@@ -9,8 +9,7 @@ class App
         Router::get('/', function () {
             $this::call('home')->index();
         });
-
-
+        
         // EXTRA PAGE
         Router::get('/sample', function () {
             $this::call('sample')->index();
