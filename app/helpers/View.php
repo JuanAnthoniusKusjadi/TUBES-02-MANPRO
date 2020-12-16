@@ -31,11 +31,6 @@ class view
         require_once VIEW_PATH . "templates/$template.php";
     }
 
-    public static function add_image($name, $extension)
-    {
-        return IMG_PATH . "$name.$extension";
-    }
-
     public function render()
     {
         foreach ($this->data as $key => $value) {
