@@ -6,7 +6,7 @@ class App
     public function __construct()
     {
         // PAGE HOME
-        Router::get('/', function () {
+        Router::get('/home', function () {
             $this::call('home')->index();
         });
         
