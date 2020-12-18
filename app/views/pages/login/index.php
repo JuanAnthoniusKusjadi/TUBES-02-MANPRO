@@ -12,6 +12,15 @@
                     <div class="col">
                         <span>Please enter your login information</span>
                     </div>
+                    <?php 
+                        if(isset($error)) {
+                            echo '
+                                <div class="col">
+                                    <span class="text-danger font-weight-bold">'. $error .'</span>
+                                </div>
+                            ';
+                        }
+                    ?>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -33,16 +42,6 @@
         </div>
     </div>
 </div>
-
-<?php 
-    if(isset($error)) {
-        echo "
-        <script type='text/javascript' defer>
-            console.log('".$error."');
-        </script>
-        ";
-    }
-?>
 
 <script type="text/javascript" defer>
     class LoginForm {

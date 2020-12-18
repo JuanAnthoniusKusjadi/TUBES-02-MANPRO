@@ -21,7 +21,7 @@ class Admin extends Controller {
         }
 
         switch ($_GET['page']) {
-            case 'patient':
+            case 'user':
                 $this->page_user();
                 break;
             default:
