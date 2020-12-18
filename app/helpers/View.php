@@ -26,11 +26,6 @@ class view
         }
     }
 
-    public static function add_template($template)
-    {
-        require_once VIEW_PATH . "templates/$template.php";
-    }
-
     public function render()
     {
         foreach ($this->data as $key => $value) {
@@ -38,7 +33,9 @@ class view
         }
 
         ob_start();
+        require_once VIEW_PATH . "templates/header.php";
         require_once VIEW_PATH . "pages/$this->folder/$this->page.php";
+        require_once VIEW_PATH . "templates/footer.php";
         $content = ob_get_contents();
         ob_end_clean();
 

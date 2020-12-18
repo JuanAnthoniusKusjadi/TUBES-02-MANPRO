@@ -3,12 +3,12 @@
 class User extends Model
 {
     protected $id;
-    protected $nama;
+    protected $name;
     protected $username;
 
-    public function __construct($Id, $Nama, $Username){
+    public function __construct($id, $name, $username){
         $this->id = $id;
-        $this->nama = $nama;
+        $this->name = $name;
         $this->username = $username;
     }
 
@@ -16,8 +16,8 @@ class User extends Model
         return $this->id;
     }
 
-    public function get_nama(){
-        return $this->nama;
+    public function get_name(){
+        return $this->name;
     }
 
     public function get_username(){

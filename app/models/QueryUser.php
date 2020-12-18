@@ -14,7 +14,7 @@ class QueryUser extends Model
     public function get_all_user(){
         $query = '
             SELECT 
-                id, nama, username, password
+                id, name, username, password
             FROM 
                 User
         ';
@@ -22,41 +22,25 @@ class QueryUser extends Model
         $queryResult = $this->db->executeSelectQuery($query);
         $result = [];
         foreach ($queryResult as $key => $value) {
-            $result[] = new User($value['id'], $value['nama'], $value['username']);
+            $result[] = new User($value['id'], $value['name'], $value['username']);
         }
 
         return $result;
     }
 
-    public function get_user_by_id($id) {
-        $query = '
-            SELECT
-                id, nama, username, password
-            FROM
-                User
-            WHERE
-                id = '. $id .'
-        ';
-
-        $queryResult = $this->db->executeSelectQuery($query);
-
-        return new User($queryResult[0]['id'], $queryResult[0]['nama'], $queryResult[0]['username']);
-    }
-
-
-    public function create_user($nama, $username)
+    public function create_user($name, $username, $password)
     {
-        $nama = $this->db->escapeString($nama);
+        $name = $this->db->escapeString($name);
         $username = $this->db->escapeString($username);
         $password = $this->db->escapeString($password);
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $query = "
             INSERT INTO User (
-                nama, username, password
+                name, username, password
             )
             VALUES (
-                '$nama', '$username', '$hashed_password'
+                '$name', '$username', '$hashed_password'
             )
         ";
 
@@ -70,37 +54,31 @@ class QueryUser extends Model
         return true;
     }
 
-    public function delete_user($id, $username)
+    public function delete_user($id)
     {
-        $user = $this->get_user_by_id($id);
         $id = $this->db->escapeString($id);
-        $username = $this->db->escapeString($username);
 
         $query = "
             DELETE FROM User
-            WHERE id = '$id' AND username = '$username'
+            WHERE id = '$id'
         ";
 
         $query_result = $this->db->executeNonSelectQuery($query);
+
+        echo var_dump($query_result);
 
         if (!$query_result) {
             $this->error = $this->db->get_error();
             return false;
         }
 
-        $file_path = ROOT . 'public' . DS . 'uploads' . DS . $user->get_profile_path();
-
-        if(file_exists($file_path)) {
-            unlink($file_path);
-        }
-
         return true;
     }
 
-    public function update_user($id, $username = null, $nama = null)
+    public function update_user($id, $username = null, $name = null, $password = null)
     {
         $id = $this->db->escapeString($id);
-        $nama = $this->db->escapeString($nama);
+        $name = $this->db->escapeString($name);
         $username = $this->db->escapeString($username);
         $password = $this->db->escapeString($password);
 
@@ -111,8 +89,8 @@ class QueryUser extends Model
         if ($username != null) {
             $query .= " username = '$username',";
         }
-        if ($nama != null) {
-            $query .= " nama = '$nama',";
+        if ($name != null) {
+            $query .= " name = '$name',";
         }
         if ($password != null) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -138,7 +116,7 @@ class QueryUser extends Model
 
         $query = "
             SELECT
-                id, username, password
+                id, name, username, password
             FROM 
                 User
             WHERE   
@@ -153,7 +131,7 @@ class QueryUser extends Model
         } else {
             if (count($query_result) != 0) {
                 if (password_verify($password, $query_result[0]['password'])) {
-                    return new User($query_result[0]['id'], $query_result[0]['username'], $query_result[0]['tipe'], $query_result[0]['username'], $query_result[0]['last_login'], $query_result[0]['profile_location']);
+                    return new User($query_result[0]['id'], $query_result[0]['username'], $query_result[0]['name']);
                 } else {
                     $this->error = 'user or password incorrect';
                     return false;
