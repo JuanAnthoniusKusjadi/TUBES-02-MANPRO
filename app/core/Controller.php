@@ -1,6 +1,7 @@
 <?php
 
 require_once HELPER_PATH . 'View.php';
+require_once HELPER_PATH . 'AuthHelper.php';
 
 class Controller
 {
@@ -8,7 +9,23 @@ class Controller
     {
         $page = new View($folder, $page);
         $page->title = $folder;
+        if(self::get_user()) {
+            $page->user_information = self::get_user();
+        }
         return $page;
+    }
+
+    public static function auth_helper() {
+        return new AuthHelper;
+    }
+
+    public static function get_user() {
+        if(isset($_SESSION['login_session'])) {
+            return $_SESSION['login_session'];
+        }
+        else {
+            return false;
+        }
     }
 
     public function redirect($tipe = null)
