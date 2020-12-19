@@ -80,7 +80,6 @@ class QueryUser extends Model
 
     public function delete_patient($id)
     {
-        $user = $this->get_user_by_id($id);
         $id = $this->db->escapeString($id);
 
         $query = "
@@ -95,35 +94,16 @@ class QueryUser extends Model
             return false;
         }
 
-        $file_path = ROOT . 'public' . DS . 'uploads' . DS . $user->get_profile_path();
-
-        if(file_exists($file_path)) {
-            unlink($file_path);
-        }
-
         return true;
     }
 
-    public function read_patient($id, $gender, $age, $nationality, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
+    public function read_patient($id)
     {
         $id = $this->db->escapeString($id);
-        $gender = $this->db->escapeString($gender);
-        $age = $this->db->escapeString($age);
-        $nationality = $this->db->escapeString($nationality);
-        $province = $this->db->escapeString($province);
-        $city = $this->db->escapeString($city);
-        $infectionCase = $this->db->escapeString($infectionCase);
-        $infectedBy = $this->db->escapeString($infectedBy);
-        $contact = $this->db->escapeString($contact);
-        $onsetDate = $this->db->escapeString($onsetDate);
-        $confirmedDate = $this->db->escapeString($confirmedDate);
-        $releaseDate = $this->db->escapeString($releaseDate);
-        $deceasedDate = $this->db->escapeString($deceasedDate);
-        $state = $this->db->escapeString($state);
 
         $query = "
             SELECT
-            gender, age, nationality, proovince, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
+                gender, age, nationality, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
             FROM 
                 Patient
             WHERE   
