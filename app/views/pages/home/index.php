@@ -159,15 +159,14 @@
                 </td>
             </tr>
             <tr class="bg-primary">
-                <td class="text-white font-weight-bold">
-                </td>
-                <td class="text-white font-weight-bold">
+                <td colspan="2" class="text-white font-weight-bold">
                     National
                 </td>
                 <td class="text-white font-weight-bold">
                     11,587
                 </td>
                 <td class="text-white font-weight-bold">
+                    -
                 </td>
                 <td class="text-white font-weight-bold">
                     1,945
@@ -183,15 +182,14 @@
                 </td>
             </tr>
             <tr class="bg-info">
-                <td class="text-white font-weight-bold">
-                </td>
-                <td class="text-white font-weight-bold">
+                <td colspan="2" class="text-white font-weight-bold">
                     Global / Dunia
                 </td>
                 <td class="text-white font-weight-bold">
                     3,519,901
                 </td>
                 <td class="text-white font-weight-bold">
+                    -
                 </td>
                 <td class="text-white font-weight-bold">
                     1,129,834
@@ -207,5 +205,37 @@
                 </td>
             </tr>
         </table>
+        <h5 class="mt-3">Data Tanggal : 4 Mei 2020</h5>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm">
+            <img src="<?= IMG_PATH . "covid.png"; ?>" alt="">
+        </div>
+        <div class="col-sm">
+            <h2 class="font-weight-bold">Protect yourself and others from COVID-19</h2>
+            <h2>if COVID-19 is spreading in your community, stay safe by taking some simple precautions, such as physical distancing, wearing a mask, keeping rooms well ventilated, avoiding crowds, cleaning your hands, and coughing into a bent elbow or tissue. Check local advice where you live and work. Do it all!</h2>
+            <br>
+            <h2 class="font-weight-bold">How to make your environment safer</h2>
+            <ul>
+                <li><h2>Avoid the 3Cs: spaces that are closed, crowded or involve close contact.</h2></li>
+                <li><h2>Meet people outside.</h2></li>
+                <li><h2>Avoid crowded or indoor settings.</h2></li>
+                <li><h2>Wear a mask.</h2></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm">
+            <h2 class="font-weight-bold">What to do if you feel unwell</h2>
+            <ul>
+                <li><h2>Know the full range of symptoms of COVID-19.</h2></li>
+                <li><h2>Stay home and self-isolate even if you have minor symptoms such as cough, headache, mild fever, until you recover.</h2></li>
+                <li><h2>If you have a fever, cough and difficulty breathing, seek medical attention immediately.</h2></li>
+                <li><h2>Keep up to date on the latest information from trusted sources, such as WHO or your local and national heatlh authorities</h2></li>
+            </ul>
+        </div>
+        <div class="col-sm">
+            <img src="<?= IMG_PATH . "sick.png"; ?>" alt="" width="100%">
+        </div>
     </div>
 </div>
