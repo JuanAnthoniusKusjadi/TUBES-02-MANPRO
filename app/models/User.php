@@ -5,11 +5,13 @@ class User extends Model
     protected $id;
     protected $nama;
     protected $username;
+    protected $password;
 
-    public function __construct($Id, $Nama, $Username){
+    public function __construct($id, $nama, $username){
         $this->id = $id;
         $this->nama = $nama;
         $this->username = $username;
+        $this->password = $password;
     }
 
     public function get_id(){
@@ -22,5 +24,9 @@ class User extends Model
 
     public function get_username(){
         return $this->username;
+    }
+
+    public function get_password(){
+        return $this->password;
     }
 }
