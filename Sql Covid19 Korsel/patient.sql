@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `patient` (
   `patient_id` varchar(10) NOT NULL,
-  `sex` tinyint(2) DEFAULT NULL,
+  `sex` int(2) DEFAULT NULL,
   `age` varchar(5) DEFAULT NULL,
-  `country` int(10) NOT NULL,
-  `province` int(10) NOT NULL,
+  `country` int(10) DEFAULT NULL,
+  `province` int(10) DEFAULT NULL,
   `city` int(10) DEFAULT NULL,
-  `state` int(10) NOT NULL
+  `state` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Sex: 0 = Male, 1 = Female';
 
 --
