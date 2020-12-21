@@ -1,0 +1,12 @@
+.carousel {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+.center{
+    text-align: center !important;
+}
+
+table.table-bordered th,table.table-bordered td{
+    border: 1px solid black;
+}
