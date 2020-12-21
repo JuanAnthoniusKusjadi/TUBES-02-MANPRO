@@ -3,9 +3,9 @@
 class Patient extends Model
 {
     protected $id;
-    protected $gender;
+    protected $sex;
     protected $age;
-    protected $nationality;
+    protected $country;
     protected $province;
     protected $city;
     protected $infectionCase;
@@ -17,11 +17,11 @@ class Patient extends Model
     protected $deceasedDate;
     protected $state;
 
-    public function __construct($id, $gender, $age, $nationality, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state){
+    public function __construct($id, $sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state){
         $this->id = $id;
-        $this->gender = $gender;
+        $this->gender = $sex;
         $this->age = $age;
-        $this->nationality = $nationality;
+        $this->nationality = $country;
         $this->province = $province;
         $this->city = $city;
         $this->infectionCase = $infectionCase;

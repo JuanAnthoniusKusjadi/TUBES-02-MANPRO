@@ -14,9 +14,19 @@ class QueryUser extends Model
     public function get_all_patient(){
         $query = '
             SELECT 
-                id, gender, age, nationality, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
+                patient_id, sex, age, country, province, city, state
             FROM 
-                Patient
+                patient
+        ';'
+            SELECT
+                infected_by
+            FROM
+                infectedBy
+        ';'
+            SELECT
+                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+            FROM
+                infectionCase
         ';
 
         $queryResult = $this->db->executeSelectQuery($query);
@@ -31,23 +41,37 @@ class QueryUser extends Model
     public function get_patient_by_id($id) {
         $query = '
             SELECT
-                id, gender, age, nationality, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
+                patient_id, sex, age, country, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
             FROM
-                Patient
+                patient
             WHERE
-                id = '. $id .'
+                patient_id = '. $id .'
+        ';'
+            SELECT
+                infected_by
+            FROM
+                infectedBy
+            WHERE
+                patient_id = '. $id .'
+        ';'
+            SELECT
+                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+            FROM
+                infectionCase
+            WHERE
+                patient_id = '. $id .'
         ';
 
         $queryResult = $this->db->executeSelectQuery($query);
 
-        return new Patient($queryResult[0]['id'], $queryResult[0]['gender'], $queryResult[0]['age'], $queryResult[0]['nationality'], $queryResult[0]['province'], $queryResult[0]['city'], $queryResult[0]['infectionCase'], $queryResult[0]['infectedBy'], $queryResult[0]['contact'], $queryResult[0]['onsetDate'], $queryResult[0]['confirmedDate'], $queryResult[0]['releaseDate'], $queryResult[0]['deceasedDate'], $queryResult[0]['state']);
+        return new Patient($queryResult[0]['id'], $queryResult[0]['sex'], $queryResult[0]['age'], $queryResult[0]['country'], $queryResult[0]['province'], $queryResult[0]['city'], $queryResult[0]['infectionCase'], $queryResult[0]['infectedBy'], $queryResult[0]['contact'], $queryResult[0]['onsetDate'], $queryResult[0]['confirmedDate'], $queryResult[0]['releaseDate'], $queryResult[0]['deceasedDate'], $queryResult[0]['state']);
     }
 
-    public function create_patient($gender, $age, $nationality, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
+    public function create_patient($sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
     {
-        $gender = $this->db->escapeString($gender);
+        $sex = $this->db->escapeString($sex);
         $age = $this->db->escapeString($age);
-        $nationality = $this->db->escapeString($nationality);
+        $country = $this->db->escapeString($country);
         $province = $this->db->escapeString($province);
         $city = $this->db->escapeString($city);
         $infectionCase = $this->db->escapeString($infectionCase);
@@ -60,11 +84,25 @@ class QueryUser extends Model
         $state = $this->db->escapeString($state);
 
         $query = "
-            INSERT INTO Patient (
-                gender, age, nationality, proovince, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
+            INSERT INTO patient (
+                sex, age, country, province, city, state
             )
             VALUES (
-                '$gender', '$age', '$nationality', '$province', '$city', '$infectionCase', '$infectedBy', '$contact', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate', '$state'
+                '$sex', '$age', '$country', '$province', '$city', '$state'
+            )
+        ";"
+            INSERT INTO patientinfected (
+                infected_by
+            )
+            VALUES (
+                '$infectedBy'
+            )
+        ";"
+            INSERT INTO patientcase (
+                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+            )
+            VALUES (
+                '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
             )
         ";
 
@@ -83,8 +121,14 @@ class QueryUser extends Model
         $id = $this->db->escapeString($id);
 
         $query = "
-            DELETE FROM Patient
-            WHERE id = '$id'
+            DELETE FROM patient
+            WHERE patient_id = '$id'
+        ";"
+            DELETE FROM patientinfected
+            WHERE patient_id = '$id'
+        ";"
+            DELETE FROM patientcase
+            WHERE patient_id = '$id'
         ";
 
         $query_result = $this->db->executeNonSelectQuery($query);
@@ -103,11 +147,25 @@ class QueryUser extends Model
 
         $query = "
             SELECT
-                gender, age, nationality, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
+                sex, age, country, province, city, state
             FROM 
-                Patient
+                patient
             WHERE   
-                id = '$id'
+                patient_id = '$id'
+        ";"
+            SELECT
+                infected_by
+            FROM 
+                patientinfected
+            WHERE   
+                patient_id = '$id'
+        ";"
+            SELECT
+                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+            FROM 
+                patientcase
+            WHERE   
+                patient_id = '$id'
         ";
 
         $query_result = $this->db->executeSelectQuery($query);
