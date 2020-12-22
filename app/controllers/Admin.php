@@ -24,6 +24,9 @@ class Admin extends Controller {
             case 'user':
                 $this->page_user();
                 break;
+            case 'index':
+                $this->page_index();
+                break;
             default:
                 $this->page_user();
                 break;
@@ -38,6 +41,13 @@ class Admin extends Controller {
         $all_user = $q_user->get_all_user();
 
         $page->all_user = $all_user;
+
+        $page->render();
+    }
+
+    public function page_index()
+    {
+        $page = $this::create_page('admin', 'index');
 
         $page->render();
     }
