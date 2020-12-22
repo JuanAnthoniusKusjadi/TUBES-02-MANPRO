@@ -64,6 +64,7 @@ class DB extends DBConfig
             return false;
         }
         $this->close_connection();
+
         return $result;
     }
 
