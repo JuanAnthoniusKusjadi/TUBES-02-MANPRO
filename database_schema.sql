@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 06:06 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Generation Time: Dec 22, 2020 at 05:10 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -16013,6 +16013,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `patientcase`
+--
+ALTER TABLE `patientcase`
+  MODIFY `idCase` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5165;
+
+--
+-- AUTO_INCREMENT for table `patientinfected`
+--
+ALTER TABLE `patientinfected`
+  MODIFY `idInfected` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5166;
 
 --
 -- AUTO_INCREMENT for table `user`
