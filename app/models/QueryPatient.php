@@ -138,8 +138,9 @@ class QueryPatient extends Model
             $queryResult[0]['deceased_Date']);
     }
 
-    public function create_patient($sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
+    public function create_patient($id, $sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
     {
+        $id = $this->db->escapeString($id);
         $sex = $this->db->escapeString($sex);
         $age = $this->db->escapeString($age);
         $country = $this->db->escapeString($country);
@@ -155,30 +156,30 @@ class QueryPatient extends Model
 
         $queryPatient = "
             INSERT INTO patient (
-                sex, age, country, province, city, state
+                patient_id, sex, age, country, province, city, state
             )
             VALUES (
-                '$sex', '$age', '$country', '$province', '$city', '$state'
+                '$id', '$sex', '$age', '$country', '$province', '$city', '$state'
             )
         ";
         $query_result = $this->db->executeNonSelectQuery($queryPatient);
         
         $queryPatientInfected = "
             INSERT INTO patientinfected (
-                infected_by
+                patient_id, infected_by
             )
             VALUES (
-                '$infectedBy'
+                '$id', '$infectedBy'
             )
         ";
         $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
         
         $queryPatientCase = "
             INSERT INTO patientcase (
-                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+                patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
             )
             VALUES (
-                '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
+                '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
             )
         ";
         $query_result = $this->db->executeNonSelectQuery($queryPatientCase
@@ -200,11 +201,7 @@ class QueryPatient extends Model
             DELETE
                 patient.*,
                 patientinfected.*,
-                patientcase.*,
-                province.*,
-                state.*,
-                city.*,
-                country.*
+                patientcase.*
             FROM
                 `patient`
             INNER JOIN `patientcase` ON `patient`.`patient_id` = `patientcase`.`patient_id`
