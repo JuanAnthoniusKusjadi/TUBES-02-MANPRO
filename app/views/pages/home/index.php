@@ -70,8 +70,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Total Confirmed</h3>
-                                <h4 class="card-text text-center font-weight-bold text-danger ">43,484</h4>
-                                <h4 class="card-text text-center">Daily Change + 718</h4>
+                                <h4 class="card-text text-center font-weight-bold text-danger "><?= $countConfirmedNational ? $countConfirmedNational : "0" ?></h4>
                             </div>
                         </div>
                     </div>
@@ -81,8 +80,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Isolated</h3>
-                                <h4 class="card-text text-center font-weight-bold text-warning">10,795</h4>
-                                <h4 class="card-text text-center">Daily Change + 718</h4>
+                                <h4 class="card-text text-center font-weight-bold text-warning"><?= $countIsolatedNational ? $countIsolatedNational : "0" ?></h4>
                             </div>
                         </div>
                     </div>
@@ -92,8 +90,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Released</h3>
-                                <h4 class="card-text text-center font-weight-bold text-success">32,102</h4>
-                                <h4 class="card-text text-center">Daily Change + 288</h4>
+                                <h4 class="card-text text-center font-weight-bold text-success"><?= $countReleasedNational ? $countReleasedNational : "0" ?></h4>
                             </div>
                         </div>
                     </div>
@@ -103,8 +100,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Deceased</h3>
-                                <h4 class="card-text text-center font-weight-bold">587</h4>
-                                <h4 class="card-text text-center">Daily Change + 7</h4>
+                                <h4 class="card-text text-center font-weight-bold"><?= $countDeceasedNational ? $countDeceasedNational : "0" ?></h4>
                             </div>
                         </div>
                     </div>
@@ -118,106 +114,54 @@
                 <div class="col">
                     <h3 class="my-4 font-weight-bold text-center">South Korea COVID-19 Cases</h3>
                     <div class="bg-dark pt-3 pb-3">
-                        <h4 class="card-text text-center text-white">PERBANDINGAN PERKEMBANGAN 10 PROVINSI DENGAN COVID-19 TERBESAR,NASIONAL, DAN GLOBAL</h4>
+                        <h4 class="card-text text-center text-white">PERBANDINGAN PERKEMBANGAN COVID-19 TIAP PROVINSI</h4>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col">
                     <table class="table-bordered text-center w-100">
-                        <tr>
-                            <th class="table-active" rowspan="3">No</th>
-                            <th class="table-active" rowspan="3">Provinsi</th>
-                            <th class="table-success" colspan="2">Positif</th>
-                            <th class="table-primary" colspan="2">Sembuh</th>
-                            <th class="table-danger" colspan="2">Meninggal</th>
-                        </tr>
-                        <tr>
-                            <th class="table-success" rowspan="2">Jumlah</th>
-                            <th class="table-success" rowspan="2">Rata-rata pertambahan perhari</th>
-                            <th class="table-primary" rowspan="2">Jumlah</th>
-                            <th class="table-primary" rowspan="2">Persentase</th>
-                            <th class="table-danger" rowspan="2">Jumlah</th>
-                            <th class="table-danger" rowspan="2">Persentase</th>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                DKI Jakarta
-                            </td>
-                            <td>
-                                4,539
-                            </td>
-                            <td>
-                                110
-                            </td>
-                            <td>
-                                632
-                            </td>
-                            <td>
-                                13.92%
-                            </td>
-                            <td>
-                                408
-                            </td>
-                            <td>
-                                8.99%
-                            </td>
-                        </tr>
-                        <tr class="bg-primary">
-                            <td colspan="2" class="text-white font-weight-bold">
-                                National
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                11,587
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                -
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                1,945
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                16,86%
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                864
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                7.46%
-                            </td>
-                        </tr>
-                        <tr class="bg-info">
-                            <td colspan="2" class="text-white font-weight-bold">
-                                Global / Dunia
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                3,519,901
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                -
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                1,129,834
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                32.10%
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                247.630
-                            </td>
-                            <td class="text-white font-weight-bold">
-                                7.04%
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th class="table-active" rowspan="3">No</th>
+                                <th class="table-active" rowspan="3">Provinsi</th>
+                                <th class="table-success" colspan="1">Positif</th>
+                                <th class="table-primary" colspan="2">Sembuh</th>
+                                <th class="table-danger" colspan="2">Meninggal</th>
+                            </tr>
+                            <tr>
+                                <th class="table-success" rowspan="2">Jumlah</th>
+                                <th class="table-primary" rowspan="2">Jumlah</th>
+                                <th class="table-primary" rowspan="2">Persentase</th>
+                                <th class="table-danger" rowspan="2">Jumlah</th>
+                                <th class="table-danger" rowspan="2">Persentase</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($countByProvince as $key => $data) {
+                                    $no = $key + 1;
+                                    echo '
+                                        <tr>
+                                            <td>'. $no .'</td>
+                                            <td>'. $data["province"] .'</td>
+                                            <td>'. $data["Total"] .'</td>
+                                            <td>'. $data["Sembuh"] .'</td>
+                                            <td>'. number_format((float)$data["Sembuh"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
+                                            <td>'. $data["Meninggal"] .'</td>
+                                            <td>'. number_format((float)$data["Meninggal"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
+                                        </tr>
+                                    ';
+                                }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <h5 class="mt-3 text-center">Data Tanggal : 4 Mei 2020</h5>
+
+        
+        
     </div>
     <div class="row mt-5">
         <div class="col">
