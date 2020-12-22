@@ -3,33 +3,31 @@
 class Patient extends Model
 {
     protected $id;
-    protected $gender;
+    protected $sex;
     protected $age;
-    protected $nationality;
+    protected $country;
     protected $province;
     protected $city;
     protected $infectionCase;
     protected $infectedBy;
-    protected $contact;
     protected $onsetDate;
     protected $confirmedDate;
-    protected $releaseDate;
+    protected $releasedDate;
     protected $deceasedDate;
     protected $state;
 
-    public function __construct($id, $gender, $age, $nationality, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state){
+    public function __construct($id, $sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $onsetDate, $confirmedDate, $releasedDate, $deceasedDate, $state){
         $this->id = $id;
-        $this->gender = $gender;
+        $this->sex = $sex;
         $this->age = $age;
-        $this->nationality = $nationality;
+        $this->country = $country;
         $this->province = $province;
         $this->city = $city;
         $this->infectionCase = $infectionCase;
         $this->infectedBy = $infectedBy;
-        $this->contact = $contact;
         $this->onsetDate = $onsetDate;
         $this->confirmedDate = $confirmedDate;
-        $this->releaseDate = $releaseDate;
+        $this->releasedDate = $releasedDate;
         $this->deceasedDate = $deceasedDate;
         $this->state = $state;
     }
@@ -38,16 +36,16 @@ class Patient extends Model
         return $this->id;
     }
 
-    public function get_gender(){
-        return $this->gender;
+    public function get_sex(){
+        return $this->sex;
     }
 
     public function get_age(){
         return $this->age;
     }
 
-    public function get_nationality(){
-        return $this->nationality;
+    public function get_country(){
+        return $this->country;
     }
 
     public function get_province(){
@@ -66,9 +64,9 @@ class Patient extends Model
         return $this->infectedBy;
     }
 
-    public function get_contact(){
-        return $this->contact;
-    }
+    // public function get_contact(){
+    //     return $this->contact;
+    // }
 
     public function get_onset_date(){
         return $this->onsetDate;
@@ -78,12 +76,12 @@ class Patient extends Model
         return $this->confirmedDate;
     }
 
-    public function get_release_date(){
-        return $this->releaseDate;
+    public function get_released_date(){
+        return $this->releasedDate;
     }
 
     public function get_deceased_date(){
-        return $this->deceaseDate;
+        return $this->deceasedDate;
     }
 
     public function get_state(){
