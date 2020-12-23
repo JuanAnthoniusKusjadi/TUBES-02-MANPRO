@@ -25,8 +25,8 @@ class Admin extends Controller {
             case 'user':
                 $this->page_user();
                 break;
-            case 'index': //ganti nama jangan index
-                $this->page_index();
+            case 'addPatient': //ganti nama jangan index
+                $this->page_addPatient();
                 break;
             case 'patient':
                 $this->page_patient();
@@ -72,9 +72,27 @@ class Admin extends Controller {
         $page->render();
     }
 
-    public function page_index()
+    public function page_addPatient()
     {
-        $page = $this::create_page('admin', 'index');
+        $page = $this::create_page('admin', 'addPatient');
+
+        // if(isset($_POST['patient_id']) && isset($_POST['sex']) && isset($_POST['age']) && $_POST['country']) && isset($_POST['province']) && isset($_POST['city']) && isset($_POST['state'])) {
+        //     $name = $_POST['name'];
+        //     $username = $_POST['username'];
+        //     $password = $_POST['password'];
+
+        //     if (!empty($name) && !empty($username) && !empty($password)) {
+        //         $q_user = new QueryUser;
+        //         $q_user->create_user($name, $username, $password);
+        //         if (!$q_user) {
+        //             return $q_user->get_error();
+        //         }
+        //         return 'berhasil';
+        //     } 
+        // }
+        // else {
+        //     return 'missing params';
+        // }
 
         $page->render();
     }
