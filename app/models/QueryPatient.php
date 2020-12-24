@@ -88,36 +88,59 @@ class QueryPatient extends Model
     }
 
     public function get_patient_by_id($id) {
-        $query = '
-            SELECT
-                patient_id, sex, age, country, province, city, infectionCase, infectedBy, contact, onsetDate, confirmedDate, releaseDate, deceasedDate, state
-            FROM
-                patient
+        $query = "
+            SELECT 
+                `patient`.`patient_id`,
+                `patient`.`sex`,
+                `patient`.`age`,
+                `country`.`country`,
+                `province`.`province`,
+                `city`.`city`,
+                `state`.`state`,
+                `patientinfected`.`infected_by`,
+                `patientcase`.`infection_case`,
+                `patientcase`.`sympton_onset_date`,
+                `patientcase`.`confirmed_date`,
+                `patientcase`.`released_date`,
+                `patientcase`.`deceased_date`
+            FROM `patient` 
+                INNER JOIN `patientcase` 
+                    ON `patient`.`patient_id` = `patientcase`.`patient_id` 
+                INNER JOIN `patientinfected` 
+                    ON `patient`.`patient_id` = `patientinfected`.`patient_id` 
+                INNER JOIN `province` 
+                    ON `patient`.`province` = `province`.`idProvince` 
+                INNER JOIN `state` 
+                    ON `patient`.`state` = `state`.`idState` 
+                INNER JOIN `city` 
+                    ON `patient`.`city` = `city`.`idCity` 
+                INNER JOIN `country` 
+                    ON `patient`.`country` = `country`.`idCountry`
             WHERE
-                patient_id = '. $id .'
-        ';'
-            SELECT
-                infected_by
-            FROM
-                infectedBy
-            WHERE
-                patient_id = '. $id .'
-        ';'
-            SELECT
-                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
-            FROM
-                infectionCase
-            WHERE
-                patient_id = '. $id .'
-        ';
+                `patient`.`patient_id` = '$id' 
+        ";
 
         $queryResult = $this->db->executeSelectQuery($query);
 
-        return new Patient($queryResult[0]['id'], $queryResult[0]['sex'], $queryResult[0]['age'], $queryResult[0]['country'], $queryResult[0]['province'], $queryResult[0]['city'], $queryResult[0]['infectionCase'], $queryResult[0]['infectedBy'], $queryResult[0]['contact'], $queryResult[0]['onsetDate'], $queryResult[0]['confirmedDate'], $queryResult[0]['releaseDate'], $queryResult[0]['deceasedDate'], $queryResult[0]['state']);
+        return new Patient(
+            $queryResult[0]['patient_id'], 
+            $queryResult[0]['sex'], 
+            $queryResult[0]['age'], 
+            $queryResult[0]['country'], 
+            $queryResult[0]['province'], 
+            $queryResult[0]['city'], 
+            $queryResult[0]['state'],
+            $queryResult[0]['infection_case'], 
+            $queryResult[0]['infected_by'], 
+            $queryResult[0]['sympton_onset_date'], 
+            $queryResult[0]['confirmed_date'], 
+            $queryResult[0]['released_date'], 
+            $queryResult[0]['deceased_Date']);
     }
 
-    public function create_patient($sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $contact, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
+    public function create_patient($id, $sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
     {
+        $id = $this->db->escapeString($id);
         $sex = $this->db->escapeString($sex);
         $age = $this->db->escapeString($age);
         $country = $this->db->escapeString($country);
@@ -125,37 +148,42 @@ class QueryPatient extends Model
         $city = $this->db->escapeString($city);
         $infectionCase = $this->db->escapeString($infectionCase);
         $infectedBy = $this->db->escapeString($infectedBy);
-        $contact = $this->db->escapeString($contact);
         $onsetDate = $this->db->escapeString($onsetDate);
         $confirmedDate = $this->db->escapeString($confirmedDate);
         $releaseDate = $this->db->escapeString($releaseDate);
         $deceasedDate = $this->db->escapeString($deceasedDate);
         $state = $this->db->escapeString($state);
 
-        $query = "
+        $queryPatient = "
             INSERT INTO patient (
-                sex, age, country, province, city, state
+                patient_id, sex, age, country, province, city, state
             )
             VALUES (
-                '$sex', '$age', '$country', '$province', '$city', '$state'
-            )
-        ";"
-            INSERT INTO patientinfected (
-                infected_by
-            )
-            VALUES (
-                '$infectedBy'
-            )
-        ";"
-            INSERT INTO patientcase (
-                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
-            )
-            VALUES (
-                '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
+                '$id', '$sex', '$age', '$country', '$province', '$city', '$state'
             )
         ";
-
-        $query_result = $this->db->executeNonSelectQuery($query);
+        $query_result = $this->db->executeNonSelectQuery($queryPatient);
+        
+        $queryPatientInfected = "
+            INSERT INTO patientinfected (
+                patient_id, infected_by
+            )
+            VALUES (
+                '$id', '$infectedBy'
+            )
+        ";
+        $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
+        
+        $queryPatientCase = "
+            INSERT INTO patientcase (
+                patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+            )
+            VALUES (
+                '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
+            )
+        ";
+        $query_result = $this->db->executeNonSelectQuery($queryPatientCase
+    );
 
         if (!$query_result) {
             $this->error = $this->db->get_error();
@@ -170,14 +198,20 @@ class QueryPatient extends Model
         $id = $this->db->escapeString($id);
 
         $query = "
-            DELETE FROM patient
-            WHERE patient_id = '$id'
-        ";"
-            DELETE FROM patientinfected
-            WHERE patient_id = '$id'
-        ";"
-            DELETE FROM patientcase
-            WHERE patient_id = '$id'
+            DELETE
+                patient.*,
+                patientinfected.*,
+                patientcase.*
+            FROM
+                `patient`
+            INNER JOIN `patientcase` ON `patient`.`patient_id` = `patientcase`.`patient_id`
+            INNER JOIN `patientinfected` ON `patient`.`patient_id` = `patientinfected`.`patient_id`
+            INNER JOIN `province` ON `patient`.`province` = `province`.`idProvince`
+            INNER JOIN `state` ON `patient`.`state` = `state`.`idState`
+            INNER JOIN `city` ON `patient`.`city` = `city`.`idCity`
+            INNER JOIN `country` ON `patient`.`country` = `country`.`idCountry`
+            WHERE
+                `patient`.`patient_id` = '$id'
         ";
 
         $query_result = $this->db->executeNonSelectQuery($query);
@@ -195,26 +229,33 @@ class QueryPatient extends Model
         $id = $this->db->escapeString($id);
 
         $query = "
-            SELECT
-                sex, age, country, province, city, state
-            FROM 
-                patient
-            WHERE   
-                patient_id = '$id'
-        ";"
-            SELECT
-                infected_by
-            FROM 
-                patientinfected
-            WHERE   
-                patient_id = '$id'
-        ";"
-            SELECT
-                infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
-            FROM 
-                patientcase
-            WHERE   
-                patient_id = '$id'
+            SELECT 
+                `patient`.`patient_id`,
+                `patient`.`sex`,
+                `patient`.`age`,
+                `country`.`country`,
+                `province`.`province`,
+                `city`.`city`,
+                `state`.`state`,
+                `patientinfected`.`infected_by`,
+                `patientcase`.`infection_case`,
+                `patientcase`.`sympton_onset_date`,
+                `patientcase`.`confirmed_date`,
+                `patientcase`.`released_date`,
+                `patientcase`.`deceased_date`
+            FROM `patient` 
+                INNER JOIN `patientcase` 
+                    ON `patient`.`patient_id` = `patientcase`.`patient_id` 
+                INNER JOIN `patientinfected` 
+                    ON `patient`.`patient_id` = `patientinfected`.`patient_id` 
+                INNER JOIN `province` 
+                    ON `patient`.`province` = `province`.`idProvince` 
+                INNER JOIN `state` 
+                    ON `patient`.`state` = `state`.`idState` 
+                INNER JOIN `city` 
+                    ON `patient`.`city` = `city`.`idCity` 
+                INNER JOIN `country` 
+                    ON `patient`.`country` = `country`.`idCountry`
         ";
 
         $query_result = $this->db->executeSelectQuery($query);

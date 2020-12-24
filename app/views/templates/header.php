@@ -37,9 +37,9 @@
                                 ' . $user_information['username'] . '
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="'. BASE_PAGE .'admin?page=patient&data=1">Patients</a>
-                                <a class="dropdown-item" href="'. BASE_PAGE .'admin?page=user">Users</a>
-                                <a class="dropdown-item" href="'. BASE_PAGE .'logout">Logout</a>
+                                <a class="dropdown-item" href="./admin?page=patient&data=1">Patients</a>
+                                <a class="dropdown-item" href="./admin?page=user">Users</a>
+                                <a class="dropdown-item" href="./logout">Logout</a>
                             </div>
                         </div>
                     ';
