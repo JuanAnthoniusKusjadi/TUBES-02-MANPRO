@@ -21,7 +21,7 @@
             </li>
             <li class="nav-item p-2">
                 <h5 class="m-0">
-                    <a class="nav-link font-weight-bold" href="#">Data</a>
+                    <a class="nav-link font-weight-bold" href="<?= BASE_PAGE ?>data">Data</a>
                 </h5>
             </li>
         </ul>
