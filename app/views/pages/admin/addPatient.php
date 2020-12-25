@@ -4,7 +4,7 @@
         <div class="card p-4">
             <h3>Login</h3>
             <div class="container">
-                <form>
+                <form class="was-validated">
                     <div class="row">
                         <div class="col">Patient Id</div>
                         <div class="col">
@@ -15,9 +15,10 @@
                     <div class="row">
                         <div class="col">Gender</div>
                         <div class="col">
-                            <select class="dropdown" name="option">
-								<option value="0">0</option>
-								<option value="1">1</option>	
+                            <select class="custom-select" name="option" required>
+                                <option value="">- Select -</option>
+								<option value="0">Male</option>
+								<option value="1">Female</option>	
 							</select>
                         </div>
                     </div>
@@ -32,8 +33,9 @@
                     <div class="row">
                         <div class="col">Nationality</div>
                         <div class="col">
-                            <select class="dropdown" name="option">
-							    <option value="1">Korea</option>
+                            <select class="custom-select" name="option" required>
+                                <option value="">- Select -</option>
+                                <option value="1">Korea</option>
                                 <option value="2">China</option>
                                 <option value="3">United States</option>
                                 <option value="4">France</option>
@@ -56,7 +58,8 @@
                     <div class="row">
                         <div class="col">Province</div>
                         <div class="col">
-                            <select class="dropdown" name="option">
+                            <select class="custom-select" name="option" required>
+                                <option value="">- Select -</option>
                                 <option value="0">Tidak Diketahui</option>
                                 <option value="1">Seoul</option>
                                 <option value="2">Busan</option>
@@ -103,36 +106,37 @@
                     <div class="row">
                         <div class="col">Symptom Onset Date</div>
                         <div class="col">
-                            <input type="date">
+                            <input  type="date" >
                         </div>
                     </div>
         
                     <div class="row">
                         <div class="col">Confirmed Date</div>
                         <div class="col">
-                            <input type="date">
+                            <input type="date" >
                         </div>
                     </div>
         
                     <div class="row">
                         <div class="col">Release Date</div>
                         <div class="col">
-                            <input type="date">
+                            <input type="date" >
                         </div>
                     </div>
         
                     <div class="row">
                         <div class="col">Deceased Date</div>
                         <div class="col">
-                            <input type="date">
+                            <input  type="date" >
                         </div>
                     </div>
         
                     <div class="row">
                         <div class="col">State</div>
                         <div class="col">
-                            <select class="dropdown" name="option">
-							    <option value="released">released</option>
+                            <select class="custom-select" name="option" required>
+                                <option value="">- Select -</option>
+                                <option value="released">released</option>
                                 <option value="deceased">deceased</option>
                                 <option value="isolated">isolated</option>
 							</select>
