@@ -309,6 +309,39 @@ class QueryData extends Model {
         return $result;
     }
 
+    public function getCountConfirmedTotal()
+    {
+        $query = '
+            SELECT 
+                COUNT(`patient_id`)
+            FROM 
+                `patient`
+        ';
+
+        $queryResult = $this->db->executeSelectQuery($query);
+
+        $result = $queryResult[0]["COUNT(`patient_id`)"];
+
+        return $result;
+    }
+
+    public function getCountIsolatedTotal(){
+        $query = '
+            SELECT 
+                COUNT(`state`)
+            FROM 
+                `patient`
+            WHERE
+                `state` = 3
+        ';
+
+        $queryResult = $this->db->executeSelectQuery($query);
+
+        $result = $queryResult[0]["COUNT(`state`)"];
+
+        return $result;
+    }
+
     public function getCountReleasedTotal(){
         $query = '
             SELECT 

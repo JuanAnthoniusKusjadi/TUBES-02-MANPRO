@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h3 class="card-title font-weight-bold">Total Confirmed</h3>
                     <!-- total confirmed dari data -->
-                    <h4 class="card-text text-danger font-weight-bold">43,484</h4>
+                    <h4 class="card-text text-danger font-weight-bold"><?= $countConfirmedTotal ? $countConfirmedTotal : "0" ?></h4>
                     <!-- daily change dari data-->
                     <h5 class="card-text"><small class="text-muted font-weight-bold">Daily Change + 718</small></h5>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h3 class="card-title font-weight-bold">Isolated</h3>
                     <!-- isolated dari data -->
-                    <h4 class="card-text text-warning font-weight-bold">10,795</h4>
+                    <h4 class="card-text text-warning font-weight-bold"><?= $countIsolatedTotal ? $countIsolatedTotal : "0" ?></h4>
                     <!-- daily change dari data-->
                     <h5 class="card-text"><small class="text-muted font-weight-bold">Daily Change + 718</small></h5>
                 </div>
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <h3 class="card-title font-weight-bold">Released</h3>
                         <!-- released dari data -->
-                    <h4 class="card-text text-success font-weight-bold">32,102</h4>
+                    <h4 class="card-text text-success font-weight-bold"></h4><?= $countReleasedTotal ? $countReleasedTotal : "0" ?>
                     <!-- daily change dari data -->
                     <h5 class="card-text"><small class="text-muted font-weight-bold">Daily Change + 188</small></h5>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <h3 class="card-title font-weight-bold">Deceased</h3>
                             <!-- released dari data -->
-                        <h4 class="card-text font-weight-bold">587</h4>
+                        <h4 class="card-text font-weight-bold"><?= $countDeceasedTotal ? $countDeceasedTotal : "0" ?></h4>
                         <!-- daily change dari data -->
                         <h5 class="card-text "><small class="text-muted font-weight-bold">Daily Change + 7</small></h5>
                     </div>
