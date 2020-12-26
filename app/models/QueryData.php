@@ -373,6 +373,28 @@ class QueryData extends Model {
         return $result;
     }
 
+    public function getDailyChangeReleased($date)
+    {
+        $date = $this->db->escapeString($date);
+        $query = '
+            SELECT 
+                COUNT(patient.patient_id)
+            FROM 
+                patient JOIN patientcase
+                ON patient.patient_id = patientcase.patient_id
+            WHERE 
+                patientcase.released_date = ' . $date . ' AND patient.state = 1
+        ';
+        $queryResult = $this->db->executeSelectQuery($query);
+        if (!$queryResult) {
+            $this->error = $this->db->get_error();
+            echo $this->error;
+            return false;
+        }
+        $result = $queryResult[0]['COUNT(patient.patient_id)'];
+        return $result;
+    }
+
     public function get_error() {
         return $this->error;
     }
