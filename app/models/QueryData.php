@@ -394,6 +394,7 @@ class QueryData extends Model {
         $result = $queryResult[0]['COUNT(patient.patient_id)'];
         return $result;
     }
+
     public function getDailyChangeTotalConfirmed($date)
     {
         $date = $this->db->escapeString($date);
@@ -437,7 +438,6 @@ class QueryData extends Model {
         $result = $queryResult[0]['COUNT(patient.patient_id)'];
         return $result;
     }
-
     
     public function getDailyChangeDecease($date)
     {
