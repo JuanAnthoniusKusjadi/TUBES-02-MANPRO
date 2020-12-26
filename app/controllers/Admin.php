@@ -25,7 +25,7 @@ class Admin extends Controller {
             case 'user':
                 $this->page_user();
                 break;
-            case 'addPatient': //ganti nama jangan index
+            case 'addPatient':
                 $this->page_addPatient();
                 break;
             case 'patient':
