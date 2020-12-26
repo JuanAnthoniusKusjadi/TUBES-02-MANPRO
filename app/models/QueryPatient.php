@@ -202,9 +202,9 @@ class QueryPatient extends Model
 
         $state = "released_date";
         if($idState == "2"){
-            $state = "deceased_date"
+            $state = "deceased_date";
         } else if($idState == "3"){
-            $state = "confirmed_date"
+            $state = "confirmed_date";
         }
 
         $queryPatient = "
@@ -225,7 +225,7 @@ class QueryPatient extends Model
                 '$state' = '$date'
             WHERE 
                 patient_id = '$id'
-        "
+        ";
 
         $query_result = $this->db->executeNonSelectQuery($queryDate);
 

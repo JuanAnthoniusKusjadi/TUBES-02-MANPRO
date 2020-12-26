@@ -3,6 +3,11 @@
         <div class="col">
             <h3>List Patient</h3>
         </div>
+        <div class="col">
+            <button class="btn btn-success float-right font-weight-bold" onclick="location.href = './admin?page=addPatient'">
+                ADD PATIENT
+            </button>
+        </div>
     </div>
     <div class="row">
         <div class="col">
