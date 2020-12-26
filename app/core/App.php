@@ -43,6 +43,11 @@ class App
             $this::call('sample')->index();
         });
 
+        // GRAFIK PAGE
+        Router::get('/data', function () {
+            $this::call('grafik')->index();
+        });
+        
         Router::run();
     }
 
