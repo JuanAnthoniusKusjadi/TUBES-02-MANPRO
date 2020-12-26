@@ -60,7 +60,7 @@
             <!--Weekly Chart Case Growth -->
             <div class="card shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
-                    <h3 class="card-title font-weight-bold">Weekly Chart Case Growth</h3>
+                    <h3 class="card-title font-weight-bold">Daily Chart Case Growth</h3>
                     <!-- gambar grafik -->
                 </div>
             </div>
