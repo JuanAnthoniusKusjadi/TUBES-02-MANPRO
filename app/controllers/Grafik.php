@@ -1,6 +1,6 @@
 <?php
 
-require MODEL_PATH . 'QueryHome.php';
+require MODEL_PATH . 'QueryData.php';
 
 class Grafik extends Controller
 {

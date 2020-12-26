@@ -4,6 +4,8 @@
             <h1 class="text-center my-4 font-weight-bold">South Korea COVID-19 Statistics</h1>
             <div class="card-deck">
               
+              <!-- Card -->
+              <!-- 4 atas -->
                 <!-- total confirmed -->
                 <div class="card shadow p-3 mb-5 bg-white rounded">
                 <center>
