@@ -1,6 +1,7 @@
 <?php
 
 require MODEL_PATH . 'QueryUser.php';
+require MODEL_PATH . 'QueryPatient.php';
 
 class Admin extends Controller {
     public function index() {
@@ -24,6 +25,12 @@ class Admin extends Controller {
             case 'user':
                 $this->page_user();
                 break;
+            case 'addPatient': //ganti nama jangan index
+                $this->page_addPatient();
+                break;
+            case 'patient':
+                $this->page_patient();
+                break;
             default:
                 $this->page_user();
                 break;
@@ -35,9 +42,57 @@ class Admin extends Controller {
         $page = $this::create_page('admin', 'user');
 
         $q_user = new QueryUser;
-        $all_user = $q_user->get_all_user();
+        $page->all_user = $q_user->get_all_user();
 
-        $page->all_user = $all_user;
+        $page->render();
+    }
+
+    public function page_patient()
+    {
+        $page = $this::create_page('admin', 'patient');
+        $q_patient = new QueryPatient;
+
+        $pageNumber = 1;
+        if(isset($_GET['data'])) {
+            $pageNumber = $_GET['data'];
+        }
+        
+        $dataPerPage = 10;
+        $totalData = $q_patient->get_count_all_patient();
+        $start = $dataPerPage * ($pageNumber - 1);
+        $end = $dataPerPage;
+
+        $page->all_patient = $q_patient->get_all_patient($start, $end);
+        $page->total_data = $totalData;
+        $page->data_per_page = $dataPerPage;
+        $page->current_page = $pageNumber;
+        $page->total_page =  ceil($totalData / $dataPerPage);
+        $page->start_data = $start;
+
+        $page->render();
+    }
+
+    public function page_addPatient()
+    {
+        $page = $this::create_page('admin', 'addPatient');
+
+        // if(isset($_POST['patient_id']) && isset($_POST['sex']) && isset($_POST['age']) && $_POST['country']) && isset($_POST['province']) && isset($_POST['city']) && isset($_POST['state'])) {
+        //     $name = $_POST['name'];
+        //     $username = $_POST['username'];
+        //     $password = $_POST['password'];
+
+        //     if (!empty($name) && !empty($username) && !empty($password)) {
+        //         $q_user = new QueryUser;
+        //         $q_user->create_user($name, $username, $password);
+        //         if (!$q_user) {
+        //             return $q_user->get_error();
+        //         }
+        //         return 'berhasil';
+        //     } 
+        // }
+        // else {
+        //     return 'missing params';
+        // }
 
         $page->render();
     }
