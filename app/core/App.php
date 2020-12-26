@@ -15,6 +15,11 @@ class App
             $this::call('admin')->index();
         });
 
+        // Router::post('/admin', function () {
+        //     $this::call('userController')->add();
+        // });
+        //tambahin post
+
         // USER PAGE
         Router::post('/user', function () {
             $this::call('userController')->add();
