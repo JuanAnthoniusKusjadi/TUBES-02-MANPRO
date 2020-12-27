@@ -37,7 +37,7 @@ class QueryData extends Model {
         return $result;
     }
 
-    public function getCountReleaseDaily()
+    public function getCountReleasedDaily()
     {
         $query = '
             SELECT 
@@ -59,13 +59,13 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "date" => $value['confirmed_date'],
-                "ReleaseDaily" => $value['COUNT(patient.patient_id)']
+                "ReleasedDaily" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
     }
 
-    public function getCountDeceaseDaily()
+    public function getCountDeceasedDaily()
     {
         $query = '
             SELECT 
@@ -87,7 +87,7 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "date" => $value['confirmed_date'],
-                "deceaseDaily" => $value['COUNT(patient.patient_id)']
+                "deceasedDaily" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
@@ -119,7 +119,7 @@ class QueryData extends Model {
         return $result;
     }
 
-    public function getCountGenderDecease()
+    public function getCountGenderDeceased()
     {
         $query = '
             SELECT 
@@ -139,7 +139,7 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "gender" => $value['sex'],
-                "deceaseGender" => $value['COUNT(patient.patient_id)']
+                "deceasedGender" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
@@ -172,7 +172,7 @@ class QueryData extends Model {
         return $result;
     }
 
-    public function getCountDeceaseAges()
+    public function getCountDeceasedAges()
     {
         $query = '
             SELECT 
@@ -193,13 +193,13 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "age" => $value['age'],
-                "deceaseAge" => $value['COUNT(patient.patient_id)']
+                "deceasedAge" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
     }
 
-    public function getCountReleaseAges()
+    public function getCountReleasedAges()
     {
         $query = '
             SELECT 
@@ -220,13 +220,13 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "age" => $value['age'],
-                "releaseAge" => $value['COUNT(patient.patient_id)']
+                "releasedAge" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
     }
 
-    public function getCountReleaseProvince()
+    public function getCountReleasedProvince()
     {
         $query = '
             SELECT 
@@ -247,13 +247,13 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "province" => $value['province'],
-                "releaseProvince" => $value['COUNT(patient.patient_id)']
+                "releasedProvince" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
     }
 
-    public function getCountDeceaseProvince()
+    public function getCountDeceasedProvince()
     {
         $query = '
             SELECT 
@@ -275,7 +275,7 @@ class QueryData extends Model {
         foreach ($queryResult as $key => $value) {
             $result[] = [
                 "province" => $value['province'],
-                "deceaseProvince" => $value['COUNT(patient.patient_id)']
+                "deceasedProvince" => $value['COUNT(patient.patient_id)']
             ];
         }
         return $result;
@@ -369,7 +369,6 @@ class QueryData extends Model {
 
         $queryResult = $this->db->executeSelectQuery($query);
         $result = $queryResult[0]['COUNT(patient_id)'];
-        echo $result;
         return $result;
     }
 
@@ -439,7 +438,8 @@ class QueryData extends Model {
         return $result;
     }
     
-    public function getDailyChangeDecease($date)
+
+    public function getDailyChangeDeceased($date)
     {
         $date = $this->db->escapeString($date);
         $query = '
