@@ -5,7 +5,7 @@
             <div class="card p-4">
                 <h3 class="text-center p-2 mb-4 font-weight-bold">Add Patient</h3>
                 <div class="container">
-                    <form class="">
+                    <form class="" method="POST">
                         <div class="form-row p-2">
                             <div class="col">Patient Id</div>
                             <div class="col">
@@ -159,7 +159,7 @@
                         </div>
                     
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary">SUBMIT</button>
+                            <button type="submit" class="btn btn-primary">SUBMIT</button>
                         </div>
                     </form>
                 </div>
