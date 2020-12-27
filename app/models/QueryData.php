@@ -438,6 +438,7 @@ class QueryData extends Model {
         return $result;
     }
     
+
     public function getDailyChangeDeceased($date)
     {
         $date = $this->db->escapeString($date);
