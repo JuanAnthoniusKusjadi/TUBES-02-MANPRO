@@ -14,10 +14,16 @@ class Grafik extends Controller
     public function index()
     {
         $page = $this::create_page('grafik', 'index');
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Ymd');
         $page->countConfirmedTotal = $this->q_grafik->getCountConfirmedTotal();
         $page->countIsolatedTotal = $this->q_grafik->getCountIsolatedTotal();
         $page->countReleasedTotal = $this->q_grafik->getCountReleasedTotal();
         $page->countDeceasedTotal = $this->q_grafik->getCountDeceasedTotal();
+        $page->dailyChangeTotalConfirmed = $this->q_grafik->getDailyChangeTotalConfirmed($date);
+        $page->dailyChangeIsolated = $this->q_grafik->getDailyChangeTotalIsolated($date);
+        $page->dailyChangeReleased = $this->q_grafik->getDailyChangeReleased($date);
+        $page->dailyChangeDeceased = $this->q_grafik->getDailyChangeDeceased($date);
         $page->render();
     }
 }
