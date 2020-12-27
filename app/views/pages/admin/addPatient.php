@@ -158,7 +158,7 @@
                             </div>
                         </div>
                     
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn btn-primary">SUBMIT</button>
                         </div>
                     </form>
