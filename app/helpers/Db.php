@@ -1,6 +1,6 @@
 <?php
 
-require_once CONFIG_PATH . 'database.php';
+require_once CONFIG_PATH . 'Database.php';
 class DB extends DBConfig
 {
     protected $connection;
