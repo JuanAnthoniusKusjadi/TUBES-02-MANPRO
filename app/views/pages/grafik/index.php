@@ -74,6 +74,7 @@
                     <div class="card-body">
                     <h3 class="card-title font-weight-bold">Confirmed Case by Gender</h3>
                     <!-- gambar grafik -->
+                    
                     </div>
                     </center>
             </div>

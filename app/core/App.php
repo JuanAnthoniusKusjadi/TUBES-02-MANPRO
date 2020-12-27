@@ -53,7 +53,7 @@ class App
 
     public static function call(string $controller_name)
     {
-        require_once CONTROLLER_PATH . $controller_name . '.php';
+        require_once CONTROLLER_PATH . ucfirst($controller_name) . '.php';
         return new $controller_name;
     }
 }
