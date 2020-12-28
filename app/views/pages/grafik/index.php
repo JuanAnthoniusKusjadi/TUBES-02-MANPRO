@@ -74,7 +74,10 @@
                     <div class="card-body">
                     <h3 class="card-title font-weight-bold">Confirmed Case by Gender</h3>
                     <!-- gambar grafik -->
-                    
+                    <div style="width: 100%; height: 100%">
+                        <p>Chart Here</p>
+                        <canvas id="canvas" width="400" height="100"></canvas>
+                    </div>
                     </div>
                     </center>
             </div>
