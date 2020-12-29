@@ -24,6 +24,7 @@ class Grafik extends Controller
         $page->dailyChangeIsolated = $this->q_grafik->getDailyChangeTotalIsolated($date);
         $page->dailyChangeReleased = $this->q_grafik->getDailyChangeReleased($date);
         $page->dailyChangeDeceased = $this->q_grafik->getDailyChangeDeceased($date);
+        $page->dailyCountInfected = $this->q_grafik->getCountInfectedDaily();
         $page->render();
     }
 }
