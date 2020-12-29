@@ -57,7 +57,7 @@ class Admin extends Controller {
             $pageNumber = $_GET['data'];
         }
         
-        $dataPerPage = 10;
+        $dataPerPage = 20;
         $totalData = $q_patient->get_count_all_patient();
         $start = $dataPerPage * ($pageNumber - 1);
         $end = $dataPerPage;

@@ -158,13 +158,8 @@
                             </div>
                         </div>
                     
-<<<<<<< HEAD
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn btn-primary">SUBMIT</button>
-=======
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">SUBMIT</button>
->>>>>>> 09b4cabaeba6665c830a8b22d764d6e6afe0d2cb
                         </div>
                     </form>
                 </div>
