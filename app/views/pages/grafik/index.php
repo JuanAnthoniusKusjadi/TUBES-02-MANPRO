@@ -66,7 +66,6 @@
                     <!-- gambar grafik -->
                     <div>
                         <canvas id="canvas" width="400" height="200"></canvas>
-                        <p id="p"></p>
                     </div>
                 </div>
             </div>
@@ -131,6 +130,16 @@
         return count;
     }
 
+    function getDailyCountReleased(data) {
+        var count = [data.ReleasedDaily];
+        return count;
+    }
+
+    function getDailyCountDeceased(data) {
+        var count = [data.deceasedDaily];
+        return count;
+    }
+
     function toNumber(x) {
         return +x;
     };
@@ -148,26 +157,51 @@
 
     var dailyCountInfected = new Array();
     dailyCountInfected = <?php echo json_encode($dailyCountInfected); ?>;
+    var dailyCountReleasedArr = new Array();
+    dailyCountReleasedArr = <?php echo json_encode($dailyCountReleased); ?>;
+    var dailyCountDeceasedArr = new Array();
+    dailyCountDeceasedArr = <?php echo json_encode($dailyCountDeceased); ?>;
     var dateLabel = [];
     var stringCount = [];
+    var stringCountReleased = [];
+    var stringCountDeceased = [];
     var dailyCount = [];
+    var dailyCountReleased = [];
+    var dailyCountDeceased = [];
 
     if(dailyCountInfected != '') {
         dateLabel = dailyCountInfected.map(getDate);
         stringCount = dailyCountInfected.map(getDailyCount);
         dailyCount = stringCount.map(toNumber);
+        stringCountReleased = dailyCountReleasedArr.map(getDailyCountReleased);
+        dailyCountReleased = stringCountReleased.map(toNumber);
+        stringCountDeceased = dailyCountDeceasedArr.map(getDailyCountDeceased);
+        dailyCountDeceased = stringCountDeceased.map(toNumber);
     }
 
     var myChart = {
         type: 'line',
         data: {
             datasets : [
+                {/* dataset3 */
+                    label: "Daily Deceased Growth",
+                    borderColor: window.chartColors.red,
+                    data: dailyCountDeceased,
+                    fill: true,
+                },
                 {/* dataset1 */
-                    label: "Daily Growth",
+                    label: "Daily Infected Growth",
                     borderColor: window.chartColors.blue,
                     data: dailyCount,
                     fill: true,
-                }],
+                },
+                {/* dataset2 */
+                    label: "Daily Released Growth",
+                    borderColor: window.chartColors.green,
+                    data: dailyCountReleased,
+                    fill: true,
+                }
+                ],
                 labels: dateLabel,
         },
         options: {
@@ -226,8 +260,6 @@
         stringCountGenderDeceased = fullGenderDeceased.map(getCountGenderDeceased);
         countGenderDeceased = stringCountGenderDeceased.map(toNumber);
     }
-
-    document.getElementById("p").innerHTML = typeof countGenderInfected[0];
 
     var myChart2 = {
         type: 'pie',
