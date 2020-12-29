@@ -139,7 +139,7 @@
         var count = [data.deceasedDaily];
         return count;
     }
-
+  
     function toNumber(x) {
         return +x;
     };
@@ -260,7 +260,7 @@
         stringCountGenderDeceased = fullGenderDeceased.map(getCountGenderDeceased);
         countGenderDeceased = stringCountGenderDeceased.map(toNumber);
     }
-
+  
     var myChart2 = {
         type: 'pie',
         data: {
