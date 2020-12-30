@@ -3,6 +3,11 @@
         <div class="col">
             <h3>List Patient</h3>
         </div>
+        <div class="col">
+            <button class="btn btn-success float-right font-weight-bold" onclick="location.href = './admin?page=addPatient'">
+                ADD PATIENT
+            </button>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -64,7 +69,14 @@
                                         <td>'. $number .'</td>
                                         <td>'. $patient->get_id() .'</td>
                                         <td>'. $patient->get_state() .'</td>
-                                        <td>'. $patient->get_sex() .'</td>
+                                        <td>';
+                                            if($patient->get_sex() == "0") {
+                                                echo "male";
+                                            }
+                                            else {
+                                                echo "female";
+                                            }
+                                        echo '</td>
                                         <td>'. $patient->get_age() .'</td>
                                         <td>'. $patient->get_country() .'</td>
                                         <td>'. $patient->get_province() .'</td>

@@ -15,12 +15,11 @@ class App
             $this::call('admin')->index();
         });
 
-        // Router::post('/admin', function () {
-        //     $this::call('userController')->add();
-        // });
-        //tambahin post
+        Router::post('/admin', function () {
+            $this::call('admin')->index();
+        });
 
-        // USER PAGE
+        // USER ENDPOINT
         Router::post('/user', function () {
             $this::call('userController')->add();
         });

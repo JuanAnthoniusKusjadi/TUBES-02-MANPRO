@@ -138,7 +138,7 @@ class QueryPatient extends Model
             $queryResult[0]['deceased_Date']);
     }
 
-    public function create_patient($id, $sex, $age, $country, $province, $city, $infectionCase, $infectedBy, $onsetDate, $confirmedDate, $releaseDate, $deceasedDate, $state)
+    public function add_patient($id, $sex, $age, $country, $province, $city, $infectionCase = "etc", $onsetDate = null, $state, $infectedBy = null, $confirmedDate = null, $releaseDate = null, $deceasedDate = null)
     {
         $id = $this->db->escapeString($id);
         $sex = $this->db->escapeString($sex);
@@ -164,110 +164,74 @@ class QueryPatient extends Model
         ";
         $query_result = $this->db->executeNonSelectQuery($queryPatient);
         
-        $queryPatientInfected = "
-            INSERT INTO patientinfected (
-                patient_id, infected_by
-            )
-            VALUES (
-                '$id', '$infectedBy'
-            )
-        ";
-        $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
+        if($query_result) {
+            $queryPatientInfected = "
+                INSERT INTO patientinfected (
+                    patient_id, infected_by
+                )
+                VALUES (
+                    '$id', '$infectedBy'
+                )
+            ";
+            $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
         
-        $queryPatientCase = "
-            INSERT INTO patientcase (
-                patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
-            )
-            VALUES (
-                '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
-            )
-        ";
-        $query_result = $this->db->executeNonSelectQuery($queryPatientCase
-    );
+            if($query_result) {
+                $queryPatientCase = "
+                    INSERT INTO patientcase (
+                        patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+                    )
+                    VALUES (
+                        '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
+                    )
+                ";
+                $query_result = $this->db->executeNonSelectQuery($queryPatientCase);
+            }
+        }
 
         if (!$query_result) {
             $this->error = $this->db->get_error();
             return false;
         }
 
-        return true;
+        return $query_result;
     }
 
-    public function delete_patient($id)
+    //Format Date: YYYY/MM/DD
+    public function update_patientState($id, $idState, $date)
     {
         $id = $this->db->escapeString($id);
+        $idState = $this->db->escapeString($idState);
+        $date = $this->db->escapeString($date);
 
-        $query = "
-            DELETE
-                patient.*,
-                patientinfected.*,
-                patientcase.*
-            FROM
-                `patient`
-            INNER JOIN `patientcase` ON `patient`.`patient_id` = `patientcase`.`patient_id`
-            INNER JOIN `patientinfected` ON `patient`.`patient_id` = `patientinfected`.`patient_id`
-            INNER JOIN `province` ON `patient`.`province` = `province`.`idProvince`
-            INNER JOIN `state` ON `patient`.`state` = `state`.`idState`
-            INNER JOIN `city` ON `patient`.`city` = `city`.`idCity`
-            INNER JOIN `country` ON `patient`.`country` = `country`.`idCountry`
-            WHERE
-                `patient`.`patient_id` = '$id'
+        $state = "released_date";
+        if($idState == "2"){
+            $state = "deceased_date";
+        } else if($idState == "3"){
+            $state = "confirmed_date";
+        }
+
+        $queryPatient = "
+            UPDATE 
+                patient
+            SET 
+                state = '$idState'
+            WHERE 
+                patient_id = '$id'
         ";
 
-        $query_result = $this->db->executeNonSelectQuery($query);
+        $query_result = $this->db->executeNonSelectQuery($queryPatient);
 
-        if (!$query_result) {
-            $this->error = $this->db->get_error();
-            return false;
-        }
+        $queryDate = "
+            UPDATE 
+                patientcase
+            SET 
+                '$state' = '$date'
+            WHERE 
+                patient_id = '$id'
+        ";
+
+        $query_result = $this->db->executeNonSelectQuery($queryDate);
 
         return true;
-    }
-
-    public function read_patient($id)
-    {
-        $id = $this->db->escapeString($id);
-
-        $query = "
-            SELECT 
-                `patient`.`patient_id`,
-                `patient`.`sex`,
-                `patient`.`age`,
-                `country`.`country`,
-                `province`.`province`,
-                `city`.`city`,
-                `state`.`state`,
-                `patientinfected`.`infected_by`,
-                `patientcase`.`infection_case`,
-                `patientcase`.`sympton_onset_date`,
-                `patientcase`.`confirmed_date`,
-                `patientcase`.`released_date`,
-                `patientcase`.`deceased_date`
-            FROM `patient` 
-                INNER JOIN `patientcase` 
-                    ON `patient`.`patient_id` = `patientcase`.`patient_id` 
-                INNER JOIN `patientinfected` 
-                    ON `patient`.`patient_id` = `patientinfected`.`patient_id` 
-                INNER JOIN `province` 
-                    ON `patient`.`province` = `province`.`idProvince` 
-                INNER JOIN `state` 
-                    ON `patient`.`state` = `state`.`idState` 
-                INNER JOIN `city` 
-                    ON `patient`.`city` = `city`.`idCity` 
-                INNER JOIN `country` 
-                    ON `patient`.`country` = `country`.`idCountry`
-        ";
-
-        $query_result = $this->db->executeSelectQuery($query);
-
-        if ($this->db->get_error() != null) {
-            $this->error = $this->db->get_error();
-            return false;
-        }
-    }
-
-    public function update_patient()
-    {
-        
     }
 }
