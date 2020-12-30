@@ -24,8 +24,13 @@
                             <div class="col">
                                 <select class="custom-select" name="sex" required>
                                     <option value="">- Select -</option>
-                                    <option value="0">Male</option>
-                                    <option value="1">Female</option>	
+                                    <?php 
+                                        if(isset($all_sex)) {
+                                            foreach ($all_sex as $key => $sex) {
+                                                echo '<option value="'. $key .'">'. $sex .'</option>';
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -35,16 +40,13 @@
                             <div class="col">
                                 <select class="custom-select" name="age" required>
                                     <option value="">- Select -</option>
-                                    <option value="10s">10s</option>
-                                    <option value="20s">20s</option>
-                                    <option value="30s">30s</option>
-                                    <option value="40s">40s</option>
-                                    <option value="50s">50s</option>
-                                    <option value="60s">60s</option>
-                                    <option value="70s">70s</option>
-                                    <option value="80s">80s</option>
-                                    <option value="90s">90s</option>
-                                    <option value="100s">100s</option>
+                                    <?php 
+                                        if(isset($all_age)) {
+                                            foreach ($all_age as $key => $age) {
+                                                echo '<option value="'. $age .'">'. $age .'</option>';
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -54,22 +56,13 @@
                             <div class="col">
                                 <select class="custom-select" name="country" required>
                                     <option value="">- Select -</option>
-                                    <option value="1">Korea</option>
-                                    <option value="2">China</option>
-                                    <option value="3">United States</option>
-                                    <option value="4">France</option>
-                                    <option value="5">Thailand</option>
-                                    <option value="6">India</option>
-                                    <option value="7">Switzerland</option>
-                                    <option value="8">Germany</option>
-                                    <option value="9">Indonesia</option>
-                                    <option value="10">Vietnam</option>
-                                    <option value="11">Mongolia</option>
-                                    <option value="12">United Kingdom</option>
-                                    <option value="13">Spain</option>
-                                    <option value="14">Bangladesh</option>
-                                    <option value="15">Foreign</option>
-                                    <option value="16">Canada</option>
+                                    <?php 
+                                        if(isset($all_country)) {
+                                            foreach ($all_country as $key => $country) {
+                                                echo '<option value="'. $country['idCountry'] .'">'. $country['country'] .'</option>';
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -79,24 +72,13 @@
                             <div class="col">
                                 <select class="custom-select" name="province" required>
                                     <option value="">- Select -</option>
-                                    <option value="0">Tidak Diketahui</option>
-                                    <option value="1">Seoul</option>
-                                    <option value="2">Busan</option>
-                                    <option value="3">Daegu</option>
-                                    <option value="4">Gwangju</option>
-                                    <option value="5">Incheon</option>
-                                    <option value="6">Daejeon</option>
-                                    <option value="7">Ulsan</option>
-                                    <option value="8">Sejong</option>
-                                    <option value="9">Gyeonggi-do</option>
-                                    <option value="10">Gangwon-do</option>
-                                    <option value="11">Chungcheongbuk-do</option>
-                                    <option value="12">Chungcheongnam-do</option>
-                                    <option value="13">Jeollabuk-do</option>
-                                    <option value="14">Jeollanam-do</option>
-                                    <option value="15">Gyeongsangbuk-do</option>
-                                    <option value="16">Gyeongsangnam-do</option>
-                                    <option value="17">Jeju-do</option>
+                                    <?php 
+                                        if(isset($all_province)) {
+                                            foreach ($all_province as $key => $province) {
+                                                echo '<option value="'. $province['idProvince'] .'">'. $province['province'] .'</option>';
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -122,9 +104,13 @@
                             <div class="col">
                                 <select class="custom-select" name="state" required>
                                     <option value="">- Select -</option>
-                                    <option value="1">released</option>
-                                    <option value="2">deceased</option>
-                                    <option value="3">isolated</option>
+                                    <?php 
+                                        if(isset($all_state)) {
+                                            foreach ($all_state as $key => $state) {
+                                                echo '<option value="'. $state['idState'] .'">'. $state['state'] .'</option>';
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
