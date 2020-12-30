@@ -28,6 +28,20 @@ class QueryUser extends Model
         return $result;
     }
 
+    public function count_user(){
+        $query = '
+            SELECT 
+                COUNT(id) AS countId
+            FROM 
+                User
+        ';
+
+        $queryResult = $this->db->executeSelectQuery($query);
+        $result = $queryResult[0]['countId'];
+
+        return $result;
+    }
+
     public function create_user($name, $username, $password)
     {
         $name = $this->db->escapeString($name);
