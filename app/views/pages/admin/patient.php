@@ -43,7 +43,7 @@
                             <th scope="col" style="width: 5%">
                                 Infected By
                             </th>
-                            <th scope="col" style="width: 15%">
+                            <th scope="col" style="width: 10%">
                                 Infection Case
                             </th>
                             <th scope="col" style="width: 10%">
@@ -58,6 +58,9 @@
                             <th scope="col" style="width: 10%">
                                 Deceased Date
                             </th>
+                            <th scope="col" style="width: 5%">
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,10 +74,10 @@
                                         <td>'. $patient->get_state() .'</td>
                                         <td>';
                                             if($patient->get_sex() == "0") {
-                                                echo "male";
+                                                echo "Male";
                                             }
                                             else {
-                                                echo "female";
+                                                echo "Female";
                                             }
                                         echo '</td>
                                         <td>'. $patient->get_age() .'</td>
@@ -87,6 +90,14 @@
                                         <td>'. $patient->get_confirmed_date() .'</td>
                                         <td>'. $patient->get_released_date() .'</td>
                                         <td>'. $patient->get_deceased_date() .'</td>
+                                        <td>
+                                            <button class="btn btn-warning p-2" onclick="window.location = `./admin?page=editPatient&patient_id='. $patient->get_id() .'`">
+                                                <span class="fa fa-pen"></span>
+                                            </button>
+                                            <button class="btn btn-danger p-2" onclick="window.location = `./admin?page=delPatient&patient_id='. $patient->get_id() .'`">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                        </td>
                                     </tr>
                                 ';
                             }
