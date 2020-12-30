@@ -15,16 +15,16 @@ class App
             $this::call('admin')->index();
         });
 
-        // Router::post('/admin', function () {
-        //     $this::call('userController')->add();
-        // });
-        //tambahin post
+        Router::post('/admin', function () {
+            $this::call('admin')->index();
+        });
 
         // USER PAGE
         Router::get('/user', function () {
             $this::call('userController')->page_user();
         });
 
+        // USER ENDPOINT
         Router::post('/user', function () {
             $this::call('userController')->page_user();
         });
@@ -57,7 +57,7 @@ class App
 
     public static function call(string $controller_name)
     {
-        require_once CONTROLLER_PATH . $controller_name . '.php';
+        require_once CONTROLLER_PATH . ucfirst($controller_name) . '.php';
         return new $controller_name;
     }
 }
