@@ -4,12 +4,18 @@
         <div class="col">
             <div class="card p-4">
                 <h3 class="text-center p-2 mb-4 font-weight-bold">Add Patient</h3>
+                <?php
+                    if(isset($error)) {
+                        echo '<div class="alert alert-danger" role="alert">'. $error .'</div>';
+                    }
+                ?>
                 <div class="container">
-                    <form class="" method="POST">
+                    <!-- //? Form Add Patient -->
+                    <form class="" id="add-patient-form" method="post" action="./admin?page=addPatient">
                         <div class="form-row p-2">
                             <div class="col">Patient Id</div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Name" name="name" required>
+                                <input type="text" class="form-control" placeholder="id" name="patient_id" required>
                             </div>
                         </div>
 
@@ -100,6 +106,25 @@
                             <div class="col">
                             <select class="custom-select" name="city" required>
                                     <option value="">- Select -</option>
+                                    <?php 
+                                        if(isset($all_city)) {
+                                            foreach ($all_city as $key => $city) {
+                                                echo '<option value="'. $city['idCity'] .'">'. $city['city'] .'</option>';
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+            
+                        <div class="form-row p-2">
+                            <div class="col">State</div>
+                            <div class="col">
+                                <select class="custom-select" name="state" required>
+                                    <option value="">- Select -</option>
+                                    <option value="1">released</option>
+                                    <option value="2">deceased</option>
+                                    <option value="3">isolated</option>
                                 </select>
                             </div>
                         </div>
@@ -121,7 +146,7 @@
                         <div class="form-row p-2">
                             <div class="col">Symptom Onset Date</div>
                             <div class="col">
-                                <input type="date" class="form-control" name="sympton_onset_date">
+                                <input type="date" class="form-control" name="sympton_onset_date" required>
                             </div>
                         </div>
             
@@ -145,21 +170,10 @@
                                 <input  type="date" class="form-control" name="deceased_date">
                             </div>
                         </div>
-            
-                        <div class="form-row p-2">
-                            <div class="col">State</div>
-                            <div class="col">
-                                <select class="custom-select" name="state" required>
-                                    <option value="">- Select -</option>
-                                    <option value="released">released</option>
-                                    <option value="deceased">deceased</option>
-                                    <option value="isolated">isolated</option>
-                                </select>
-                            </div>
-                        </div>
                     
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn-primary">SUBMIT</button>
+                            <button type="submit" class="btn btn-primary font-weight-bold">SUBMIT</button>
+                            <button type="button" class="btn btn-outline-danger ml-2" onclick="window.location = './admin?page=patient'">CANCEL</button>
                         </div>
                     </form>
                 </div>

@@ -2,6 +2,7 @@
 
 require MODEL_PATH . 'QueryUser.php';
 require MODEL_PATH . 'QueryPatient.php';
+require MODEL_PATH . 'QueryCity.php';
 
 class Admin extends Controller {
     public function index() {
@@ -75,24 +76,44 @@ class Admin extends Controller {
     public function page_addPatient()
     {
         $page = $this::create_page('admin', 'addPatient');
+        $q_city = new QueryCity;
+        $all_city = $q_city->get_all_city();
 
-        // if(isset($_POST['patient_id']) && isset($_POST['sex']) && isset($_POST['age']) && $_POST['country']) && isset($_POST['province']) && isset($_POST['city']) && isset($_POST['state'])) {
-        //     $name = $_POST['name'];
-        //     $username = $_POST['username'];
-        //     $password = $_POST['password'];
+        if($all_city) {
+            $page->all_city = $all_city;
+        }
 
-        //     if (!empty($name) && !empty($username) && !empty($password)) {
-        //         $q_user = new QueryUser;
-        //         $q_user->create_user($name, $username, $password);
-        //         if (!$q_user) {
-        //             return $q_user->get_error();
-        //         }
-        //         return 'berhasil';
-        //     } 
-        // }
-        // else {
-        //     return 'missing params';
-        // }
+        if(
+            isset($_POST['patient_id']) && isset($_POST['sex']) && 
+            isset($_POST['age']) && isset($_POST['country']) && 
+            isset($_POST['province']) && isset($_POST['city']) && 
+            isset($_POST['state'])
+            ) {
+
+            $id = $_POST['patient_id'];
+            $sex = $_POST['sex'];
+            $age = $_POST['age'];
+            $country = $_POST['country'];
+            $province = $_POST['province'];
+            $city = $_POST['city'];
+            $state = $_POST['state'];
+            $infection_case = $_POST['infection_case'];
+            $sympton_onset_date = $_POST['sympton_onset_date'];
+            $infected_by = $_POST['infected_by'];
+            $confirm_date = $_POST['confirm_date'];
+            $released_date = $_POST['released_date'];
+            $deceased_date = $_POST['deceased_date'];
+
+            $q_patient = new QueryPatient;
+            $q_res = $q_patient->add_patient($id, $sex, $age, $country, $province, $city, $infection_case, $sympton_onset_date, $state, $infected_by, $confirm_date,  $released_date, $deceased_date);
+
+            if($q_res) {
+                header('location: ./admin?page=patient');
+            }
+            else {
+                $page->error = $q_patient->get_error();
+            }
+        }
 
         $page->render();
     }

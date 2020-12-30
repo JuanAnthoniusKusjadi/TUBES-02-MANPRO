@@ -138,7 +138,7 @@ class QueryPatient extends Model
             $queryResult[0]['deceased_Date']);
     }
 
-    public function create_patient($id, $sex, $age, $country, $province, $city, $infectionCase = "etc", $infectedBy = null, $onsetDate = null, $confirmedDate = null, $releaseDate = null, $deceasedDate = null, $state)
+    public function add_patient($id, $sex, $age, $country, $province, $city, $infectionCase = "etc", $onsetDate = null, $state, $infectedBy = null, $confirmedDate = null, $releaseDate = null, $deceasedDate = null)
     {
         $id = $this->db->escapeString($id);
         $sex = $this->db->escapeString($sex);
@@ -164,33 +164,36 @@ class QueryPatient extends Model
         ";
         $query_result = $this->db->executeNonSelectQuery($queryPatient);
         
-        $queryPatientInfected = "
-            INSERT INTO patientinfected (
-                patient_id, infected_by
-            )
-            VALUES (
-                '$id', '$infectedBy'
-            )
-        ";
-        $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
+        if($query_result) {
+            $queryPatientInfected = "
+                INSERT INTO patientinfected (
+                    patient_id, infected_by
+                )
+                VALUES (
+                    '$id', '$infectedBy'
+                )
+            ";
+            $query_result = $this->db->executeNonSelectQuery($queryPatientInfected);
         
-        $queryPatientCase = "
-            INSERT INTO patientcase (
-                patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
-            )
-            VALUES (
-                '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
-            )
-        ";
-        $query_result = $this->db->executeNonSelectQuery($queryPatientCase
-    );
+            if($query_result) {
+                $queryPatientCase = "
+                    INSERT INTO patientcase (
+                        patient_id, infection_case, sympton_onset_date, confirmed_date, released_date, deceased_date
+                    )
+                    VALUES (
+                        '$id', '$infectionCase', '$onsetDate', '$confirmedDate', '$releaseDate', '$deceasedDate'
+                    )
+                ";
+                $query_result = $this->db->executeNonSelectQuery($queryPatientCase);
+            }
+        }
 
         if (!$query_result) {
             $this->error = $this->db->get_error();
             return false;
         }
 
-        return true;
+        return $query_result;
     }
 
     //Format Date: YYYY/MM/DD

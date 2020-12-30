@@ -69,7 +69,14 @@
                                         <td>'. $number .'</td>
                                         <td>'. $patient->get_id() .'</td>
                                         <td>'. $patient->get_state() .'</td>
-                                        <td>'. $patient->get_sex() .'</td>
+                                        <td>';
+                                            if($patient->get_sex() == "0") {
+                                                echo "male";
+                                            }
+                                            else {
+                                                echo "female";
+                                            }
+                                        echo '</td>
                                         <td>'. $patient->get_age() .'</td>
                                         <td>'. $patient->get_country() .'</td>
                                         <td>'. $patient->get_province() .'</td>
