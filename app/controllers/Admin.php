@@ -32,6 +32,12 @@ class Admin extends Controller {
             case 'user':
                 $this->page_user();
                 break;
+            case 'addUser':
+                $this->page_addUser();
+                break;
+            case 'updateUser':
+                $this->page_updateUser();
+                break;
             case 'addPatient':
                 $this->page_addPatient();
                 break;
@@ -56,6 +62,29 @@ class Admin extends Controller {
 
         $q_user = new QueryUser;
         $page->all_user = $q_user->get_all_user();
+
+        $page->render();
+    }
+
+    public function page_addUser()
+    {
+        $page = $this::create_page('admin', 'addUser');
+
+        $q_user = new QueryUser;
+        $page->all_user = $q_user->get_all_user();
+
+        $page->render();
+    }
+
+    public function page_updateUser()
+    {
+        $page = $this::create_page('admin', 'updateUser');
+
+        $id = "";
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+        }
+        $page->id = $id;
 
         $page->render();
     }

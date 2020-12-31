@@ -19,9 +19,14 @@ class App
             $this::call('admin')->index();
         });
 
+        // USER PAGE
+        Router::get('/user', function () {
+            $this::call('userController')->page_user();
+        });
+
         // USER ENDPOINT
         Router::post('/user', function () {
-            $this::call('userController')->add();
+            $this::call('userController')->page_user();
         });
 
         // LOGIN & LOGOUT PAGE
