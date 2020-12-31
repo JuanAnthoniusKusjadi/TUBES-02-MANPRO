@@ -337,18 +337,18 @@
      var countAgeReleased = [];
      var countAgeDeceased = [];
 
-     if(countAgeInfected != ''){
+     if(countAgeInfectedArr != ''){
          ageLabel = countAgeInfectedArr.map(getAgeInterval);
          stringCountAgeInfected = countAgeInfectedArr.map(getCountAgeInfected);
          countAgeInfected = stringCountAgeInfected.map(toNumber);
          stringCountAgeReleased = countAgeReleasedArr.map(getCountAgeReleased);
-         countAgeReleased = stringCountAgeReleasedArr.map(toNumber);
+         countAgeReleased = stringCountAgeReleased.map(toNumber);
          stringCountAgeDeceased = countAgeDeceasedArr.map(getCountAgeDeceased);
          countAgeDeceased = stringCountAgeDeceased.map(toNumber);  
      }
 
      var data = {
-         dataset : [
+         datasets : [
              {
                  label : "Infected",
                  borderColor : window.chartColors.blue,
