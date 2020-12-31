@@ -102,6 +102,9 @@
                 <div class="card-body">
                     <h3 class="card-title font-weight-bold">Statistics by Age Interval</h3>
                     <!-- gambar grafik -->
+                    <div>
+                            <canvas id="canvas-4" width="400" height="200"></canvas>
+                        </div>
                 </div>
                 </center>
             </div>
@@ -153,6 +156,9 @@
 
         var ctx3 = document.getElementById("canvas-3").getContext("2d");
         new Chart(ctx3, myChart3);
+
+        var ctx4 = document.getElementById("canvas-4").getContext("2d");
+        new Chart(ctx4, myChart4);
     };
 
     var dailyCountInfected = new Array();
@@ -232,6 +238,7 @@
     var colors = [
         window.chartColors.blue,
         window.chartColors.red,
+        window.chartColors.green,
     ];
 
     function getCountGenderInfected(data) {
@@ -288,4 +295,94 @@
             responsive: true,
         },
     };
+
+
+    function getAgeInterval(data){
+        if(data.age != ''){
+            var age = [data.age];
+        }
+        else{
+            var age = "unknown";
+        }
+        return age;
+    }
+
+    function getCountAgeInfected(data) {
+        var count = [data.infectedAge];
+        return count;
+    }
+
+    function getCountAgeDeceased(data) {
+        var count = [data.deceasedAge];
+        return count;
+    }
+
+    function getCountAgeReleased(data) {
+        var count = [data.releasedAge];
+        return count;
+    }
+
+     var countAgeInfectedArr = new Array();
+     countAgeInfectedArr = <?php echo json_encode($countAgeInfected); ?>;
+     var countAgeReleasedArr = new Array();
+     countAgeReleasedArr = <?php echo json_encode($countAgeReleased); ?>;
+     var countAgeDeceasedArr = new Array();
+     countAgeDeceasedArr = <?php echo json_encode($countAgeDeceased); ?>;
+
+     var ageLabel = [];
+     var stringCountAgeInfected = [];
+     var stringCountAgeReleased = [];
+     var stringCountAgeDeceased = [];
+     var countAgeInfected = [];
+     var countAgeReleased = [];
+     var countAgeDeceased = [];
+
+     if(countAgeInfected != ''){
+         ageLabel = countAgeInfectedArr.map(getAgeInterval);
+         stringCountAgeInfected = countAgeInfectedArr.map(getCountAgeInfected);
+         countAgeInfected = stringCountAgeInfected.map(toNumber);
+         stringCountAgeReleased = countAgeReleasedArr.map(getCountAgeReleased);
+         countAgeReleased = stringCountAgeReleasedArr.map(toNumber);
+         stringCountAgeDeceased = countAgeDeceasedArr.map(getCountAgeDeceased);
+         countAgeDeceased = stringCountAgeDeceased.map(toNumber);  
+     }
+
+     var data = {
+         dataset : [
+             {
+                 label : "Infected",
+                 borderColor : window.chartColors.blue,
+                 borderWidth : 4,
+                 data : countAgeInfected,
+             },
+             {
+                 label : "Released",
+                 borderColor : window.chartColors.green,
+                 borderWidth : 4,
+                 data : countAgeReleased,
+             },
+             {
+                 label : "Deceased",
+                 borderColor : window.chartColors.red,
+                 borderWidth : 4,
+                 data : countAgeDeceased,
+             }
+         ],
+         labels : ageLabel,
+     };
+
+     var myChart4 = {
+         type : 'bar',
+         data : data,
+         options : {
+             barValueSpacing : 20, 
+             scales : {
+                 yAxes : [{
+                     ticks : {
+                         min : 0,
+                     }
+                 }]
+             }
+         }
+     };
 </script>
