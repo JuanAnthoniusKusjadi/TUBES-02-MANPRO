@@ -472,6 +472,13 @@
                      ticks : {
                          min : 0,
                      }
+                 }],
+                 xAxes : [{
+                     ticks : {
+                        autoSkip : false,
+                        maxRotation : 50,
+                        minRotation : 50,
+                     }     
                  }]
              }
          }
