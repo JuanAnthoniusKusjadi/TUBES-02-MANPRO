@@ -64,10 +64,6 @@ class Patient extends Model
         return $this->infectedBy;
     }
 
-    // public function get_contact(){
-    //     return $this->contact;
-    // }
-
     public function get_onset_date(){
         return $this->onsetDate;
     }
