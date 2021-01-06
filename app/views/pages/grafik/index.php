@@ -103,8 +103,8 @@
                     <h3 class="card-title font-weight-bold">Statistics by Age Interval</h3>
                     <!-- gambar grafik -->
                     <div>
-                            <canvas id="canvas-4" width="400" height="200"></canvas>
-                        </div>
+                        <canvas id="canvas-4" width="400" height="200"></canvas>
+                    </div>
                 </div>
                 </center>
             </div>
@@ -115,6 +115,9 @@
                 <div class="card-body">
                     <h3 class="card-title font-weight-bold">Statistics by Province</h3>
                     <!-- gambar grafik -->
+                    <div>
+                        <canvas id="canvas-5" width="400" height="200"></canvas>
+                    </div>
                 </div>
                 </center>
             </div>
@@ -159,6 +162,9 @@
 
         var ctx4 = document.getElementById("canvas-4").getContext("2d");
         new Chart(ctx4, myChart4);
+
+        var ctx5 = document.getElementById("canvas-5").getContext("2d");
+        new Chart(ctx5, myChart5);
     };
 
     var dailyCountInfected = new Array();
@@ -337,18 +343,18 @@
      var countAgeReleased = [];
      var countAgeDeceased = [];
 
-     if(countAgeInfected != ''){
+     if(countAgeInfectedArr != ''){
          ageLabel = countAgeInfectedArr.map(getAgeInterval);
          stringCountAgeInfected = countAgeInfectedArr.map(getCountAgeInfected);
          countAgeInfected = stringCountAgeInfected.map(toNumber);
          stringCountAgeReleased = countAgeReleasedArr.map(getCountAgeReleased);
-         countAgeReleased = stringCountAgeReleasedArr.map(toNumber);
+         countAgeReleased = stringCountAgeReleased.map(toNumber);
          stringCountAgeDeceased = countAgeDeceasedArr.map(getCountAgeDeceased);
          countAgeDeceased = stringCountAgeDeceased.map(toNumber);  
      }
 
      var data = {
-         dataset : [
+         datasets : [
              {
                  label : "Infected",
                  borderColor : window.chartColors.blue,
@@ -381,6 +387,98 @@
                      ticks : {
                          min : 0,
                      }
+                 }]
+             }
+         }
+     };
+
+     function getProvince(data) {
+        var province = [data.province];
+        return province;
+    }
+
+     function getCountProvinceInfected(data) {
+        var count = [data.infectedProvince];
+        return count;
+    }
+
+    function getCountProvinceDeceased(data) {
+        var count = [data.deceasedProvince];
+        return count;
+    }
+
+    function getCountProvinceReleased(data) {
+        var count = [data.releasedProvince];
+        return count;
+    }
+
+     var countProvinceInfectedArr = new Array();
+     countProvinceInfectedArr = <?php echo json_encode($countProvinceInfected); ?>;
+     var countProvinceReleasedArr = new Array();
+     countProvinceReleasedArr = <?php echo json_encode($countProvinceReleased); ?>;
+     var countProvinceDeceasedArr = new Array();
+     countProvinceDeceasedArr = <?php echo json_encode($countProvinceDeceased); ?>;
+     
+
+     var provinceLabel = [];
+     var stringCountProvinceInfected = [];
+     var stringCountProvinceReleased = [];
+     var stringCountProvinceDeceased = [];
+     var countProvinceInfected = [];
+     var countProvinceReleased = [];
+     var countProvinceDeceased = [];
+
+     if(countProvinceInfectedArr != ''){
+         provinceLabel = countProvinceInfectedArr.map(getProvince);
+         stringCountProvinceInfected = countProvinceInfectedArr.map(getCountProvinceInfected);
+         countProvinceInfected = stringCountProvinceInfected.map(toNumber);
+         stringCountProvinceReleased = countProvinceReleasedArr.map(getCountProvinceReleased);
+         countProvinceReleased = stringCountProvinceReleased.map(toNumber);
+         stringCountProvinceDeceased = countProvinceDeceasedArr.map(getCountProvinceDeceased);
+         countProvinceDeceased = stringCountProvinceDeceased.map(toNumber);  
+     }
+
+     var dataProvince = {
+         datasets : [
+             {
+                 label : "Infected",
+                 borderColor : window.chartColors.blue,
+                 borderWidth : 4,
+                 data : countProvinceInfected,
+             },
+             {
+                 label : "Released",
+                 borderColor : window.chartColors.green,
+                 borderWidth : 4,
+                 data : countProvinceReleased,
+             },
+             {
+                 label : "Deceased",
+                 borderColor : window.chartColors.red,
+                 borderWidth : 4,
+                 data : countProvinceDeceased,
+             }
+         ],
+         labels : provinceLabel,
+     };
+
+     var myChart5 = {
+         type : 'bar',
+         data : dataProvince,
+         options : {
+             barValueSpacing : 10, 
+             scales : {
+                 yAxes : [{
+                     ticks : {
+                         min : 0,
+                     }
+                 }],
+                 xAxes : [{
+                     ticks : {
+                        autoSkip : false,
+                        maxRotation : 50,
+                        minRotation : 50,
+                     }     
                  }]
              }
          }

@@ -32,6 +32,9 @@ class Grafik extends Controller
         $page->countAgeInfected = $this->q_grafik->getCountInfectedAges();
         $page->countAgeReleased = $this->q_grafik->getCountReleasedAges();
         $page->countAgeDeceased = $this->q_grafik->getCountDeceasedAges();
+        $page->countProvinceInfected = $this->q_grafik->getCountInfectedProvince();
+        $page->countProvinceReleased = $this->q_grafik->getCountReleasedProvince();
+        $page->countProvinceDeceased = $this->q_grafik->getCountDeceasedProvince();
         $page->render();
     }
 }
