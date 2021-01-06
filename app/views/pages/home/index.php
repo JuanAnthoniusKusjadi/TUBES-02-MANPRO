@@ -63,6 +63,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Total Confirmed</h3>
                                 <h4 class="card-text text-center font-weight-bold text-danger "><?= $countConfirmedNational ? $countConfirmedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeTotalConfirmed ? $dailyChangeTotalConfirmed : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -73,6 +74,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Isolated</h3>
                                 <h4 class="card-text text-center font-weight-bold text-warning"><?= $countIsolatedNational ? $countIsolatedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeIsolated ? $dailyChangeIsolated : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -83,6 +85,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Released</h3>
                                 <h4 class="card-text text-center font-weight-bold text-success"><?= $countReleasedNational ? $countReleasedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeReleased ? $dailyChangeReleased : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -93,6 +96,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Deceased</h3>
                                 <h4 class="card-text text-center font-weight-bold"><?= $countDeceasedNational ? $countDeceasedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeDeceased ? $dailyChangeDeceased : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
