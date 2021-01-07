@@ -62,7 +62,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Total Confirmed</h3>
-                                <h4 class="card-text text-center font-weight-bold text-danger "><?= $countConfirmedNational ? $countConfirmedNational : "0" ?></h4>
+                                <h4 class="card-text text-center font-weight-bold text-danger row_data"><?= $countConfirmedNational ? $countConfirmedNational : "0" ?></h4>
                                 <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeTotalConfirmed ? $dailyChangeTotalConfirmed : "0" ?></small></h5>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Isolated</h3>
-                                <h4 class="card-text text-center font-weight-bold text-warning"><?= $countIsolatedNational ? $countIsolatedNational : "0" ?></h4>
+                                <h4 class="card-text text-center font-weight-bold text-warning row_data"><?= $countIsolatedNational ? $countIsolatedNational : "0" ?></h4>
                                 <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeIsolated ? $dailyChangeIsolated : "0" ?></small></h5>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Released</h3>
-                                <h4 class="card-text text-center font-weight-bold text-success"><?= $countReleasedNational ? $countReleasedNational : "0" ?></h4>
+                                <h4 class="card-text text-center font-weight-bold text-success row_data"><?= $countReleasedNational ? $countReleasedNational : "0" ?></h4>
                                 <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeReleased ? $dailyChangeReleased : "0" ?></small></h5>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="card shadow p-2 bd-highlight" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Deceased</h3>
-                                <h4 class="card-text text-center font-weight-bold"><?= $countDeceasedNational ? $countDeceasedNational : "0" ?></h4>
+                                <h4 class="card-text text-center font-weight-bold row_data"><?= $countDeceasedNational ? $countDeceasedNational : "0" ?></h4>
                                 <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeDeceased ? $dailyChangeDeceased : "0" ?></small></h5>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <h3 class="my-4 font-weight-bold text-center">South Korea COVID-19 Cases</h3>
+                    <h3 class="my-4 font-weight-bold text-center">South Korea COVID-19 Cases Table</h3>
                     <div class="bg-dark pt-3 pb-3">
                         <h4 class="card-text text-center text-white">PERBANDINGAN PERKEMBANGAN COVID-19 TIAP PROVINSI</h4>
                     </div>
@@ -141,10 +141,10 @@
                                         <tr>
                                             <td>'. $no .'</td>
                                             <td>'. $data["province"] .'</td>
-                                            <td>'. $data["Total"] .'</td>
-                                            <td>'. $data["Sembuh"] .'</td>
+                                            <td class="row_data">'.$data["Total"].'</td>
+                                            <td class="row_data">'.$data["Sembuh"] .'</td>
                                             <td>'. number_format((float)$data["Sembuh"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
-                                            <td>'. $data["Meninggal"] .'</td>
+                                            <td class="row_data">'. $data["Meninggal"] .'</td>
                                             <td>'. number_format((float)$data["Meninggal"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
                                         </tr>
                                     ';
@@ -180,10 +180,10 @@
                                         <tr>
                                             <td>'. $no .'</td>
                                             <td>'. $data["province"] .'</td>
-                                            <td>'. $data["Total"] .'</td>
-                                            <td>'. $data["Sembuh"] .'</td>
+                                            <td class="row_data">'. $data["Total"] .'</td>
+                                            <td class="row_data">'. $data["Sembuh"] .'</td>
                                             <td>'. number_format((float)$data["Sembuh"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
-                                            <td>'. $data["Meninggal"] .'</td>
+                                            <td class="row_data">'. $data["Meninggal"] .'</td>
                                             <td>'. number_format((float)$data["Meninggal"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
                                         </tr>
                                     ';
