@@ -28,6 +28,26 @@ class QueryUser extends Model
         return $result;
     }
 
+    public function get_user_by_id($id){
+        $id = $this->db->escapeString($id);
+        $query = "
+            SELECT 
+                id, name, username, password
+            FROM 
+                User
+            WHERE
+                id = '$id'
+        ";
+
+        $queryResult = $this->db->executeSelectQuery($query);
+        $result = "";
+        foreach ($queryResult as $key => $value) {
+            $result = new User($value['id'], $value['name'], $value['username']);
+        }
+
+        return $result;
+    }
+
     public function count_user(){
         $query = '
             SELECT 
@@ -89,7 +109,7 @@ class QueryUser extends Model
         return true;
     }
 
-    public function update_user($id, $username = null, $name = null, $password = null)
+    public function update_user($id, $name = null, $username = null, $password = null)
     {
         $id = $this->db->escapeString($id);
         $name = $this->db->escapeString($name);
