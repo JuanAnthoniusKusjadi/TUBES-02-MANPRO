@@ -2,7 +2,7 @@
     <div class="row w-100 justify-content-center">
         <div class="col">
             <div class="card p-4">
-                <h3 class="text-center p-2 mb-4 font-weight-bold">Add Patient</h3>
+                <h3 class="text-center p-2 mb-4 font-weight-bold">Add User</h3>
                 <div class="container">
                     <form class="" method="POST" action="./user?page=addUser">
                         <div class="form-row p-2">

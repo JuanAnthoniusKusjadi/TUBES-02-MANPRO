@@ -92,7 +92,7 @@ class UserController extends Controller {
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            if (!empty($id) && !empty($name) && !empty($username) && !empty($password)) {
+            if (!empty($id) && !empty($name) && !empty($username)) {
                 $q_user = new QueryUser;
                 $res = $q_user->update_user($id, $name, $username, $password);
                 if (!$res) {
