@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `province` (
-  `idProvince` int(10) NOT NULL,
-  `province` varchar(20) NOT NULL
+  `idProvince` int(10) NOT NULL AUTO_INCREMENT,
+  `province` varchar(20) NOT NULL,
+  PRIMARY KEY (`idProvince`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -55,18 +56,3 @@ INSERT INTO `province` (`idProvince`, `province`) VALUES
 (15, 'Gyeongsangbuk-do'),
 (16, 'Gyeongsangnam-do'),
 (17, 'Jeju-do');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `province`
---
-ALTER TABLE `province`
-  ADD PRIMARY KEY (`idProvince`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

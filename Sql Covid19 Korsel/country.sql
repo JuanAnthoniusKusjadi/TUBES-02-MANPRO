@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `country` (
-  `idCountry` int(10) NOT NULL,
-  `country` varchar(15) NOT NULL
+  `idCountry` int(10) NOT NULL AUTO_INCREMENT,
+  `country` varchar(15) NOT NULL,
+  PRIMARY KEY (`idCountry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -61,9 +62,6 @@ INSERT INTO `country` (`idCountry`, `country`) VALUES
 --
 -- Indexes for table `country`
 --
-ALTER TABLE `country`
-  ADD PRIMARY KEY (`idCountry`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -28,9 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `patientinfected` (
-  `idInfected` int(10) NOT NULL,
+  `idInfected` int(10) NOT NULL AUTO_INCREMENT,
   `patient_id` varchar(10) NOT NULL,
-  `infected_by` varchar(10) DEFAULT NULL
+  `infected_by` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`idInfected`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5214,7 +5215,6 @@ INSERT INTO `patientinfected` (`idInfected`, `patient_id`, `infected_by`) VALUES
 -- Indexes for table `patientinfected`
 --
 ALTER TABLE `patientinfected`
-  ADD PRIMARY KEY (`idInfected`),
   ADD KEY `patient_id` (`patient_id`),
   ADD KEY `infected_by` (`infected_by`);
 

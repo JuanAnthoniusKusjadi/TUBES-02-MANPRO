@@ -28,13 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `patientcase` (
-  `idCase` int(10) NOT NULL,
+  `idCase` int(10) NOT NULL AUTO_INCREMENT,
   `patient_id` varchar(10) NOT NULL,
   `infection_case` varchar(100) NOT NULL,
   `sympton_onset_date` date DEFAULT NULL,
   `confirmed_date` date DEFAULT NULL,
   `released_date` date DEFAULT NULL,
-  `deceased_date` date DEFAULT NULL
+  `deceased_date` date DEFAULT NULL,
+  PRIMARY KEY (`idCase`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5224,7 +5225,6 @@ INSERT INTO `patientcase` (`idCase`, `patient_id`, `infection_case`, `sympton_on
 -- Indexes for table `patientcase`
 --
 ALTER TABLE `patientcase`
-  ADD PRIMARY KEY (`idCase`),
   ADD CONSTRAINT `fk_patient_case` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
