@@ -28,9 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `city` (
-  `idCity` int(10) NOT NULL,
+  `idCity` int(10) NOT NULL AUTO_INCREMENT,
   `city` varchar(20) NOT NULL,
-  `idProvince` int(10) NOT NULL
+  `idProvince` int(10) NOT NULL,
+  PRIMARY KEY (`idCity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -273,18 +274,3 @@ INSERT INTO `city` (`idCity`, `city`, `idProvince`) VALUES
 (232, 'Icheon-dong', 0),
 (233, 'Sankyeock-dong', 0),
 (234, 'etc', 0);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `city`
---
-ALTER TABLE `city`
-  ADD PRIMARY KEY (`idCity`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
