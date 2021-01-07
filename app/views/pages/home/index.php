@@ -21,14 +21,6 @@
                     <img src="<?= IMG_PATH . "pic3.jpg"; ?>" alt="New York" width="100%">
                 </div>
                 </div>
-
-                <!-- Left and right controls -->
-                <!-- <a class="carousel-control-prev" href="#carous" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#carous" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                </a> -->
             </div>
         </div>
         <div class="col-sm">
@@ -71,6 +63,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Total Confirmed</h3>
                                 <h4 class="card-text text-center font-weight-bold text-danger "><?= $countConfirmedNational ? $countConfirmedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeTotalConfirmed ? $dailyChangeTotalConfirmed : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -81,6 +74,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Isolated</h3>
                                 <h4 class="card-text text-center font-weight-bold text-warning"><?= $countIsolatedNational ? $countIsolatedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change +  <?= $dailyChangeIsolated ? $dailyChangeIsolated : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -91,6 +85,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Released</h3>
                                 <h4 class="card-text text-center font-weight-bold text-success"><?= $countReleasedNational ? $countReleasedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeReleased ? $dailyChangeReleased : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -101,6 +96,7 @@
                             <div class="card-body">
                                 <h3 class="card-title font-weight-bold text-center">Deceased</h3>
                                 <h4 class="card-text text-center font-weight-bold"><?= $countDeceasedNational ? $countDeceasedNational : "0" ?></h4>
+                                <h5 class="card-text text-center"><small class="text-muted font-weight-bold">Daily Change + <?= $dailyChangeDeceased ? $dailyChangeDeceased : "0" ?></small></h5>
                             </div>
                         </div>
                     </div>
@@ -120,7 +116,46 @@
             </div>
             <div class="row mb-3">
                 <div class="col">
-                    <table class="table-bordered text-center w-100">
+                    <table id="table_less" class="table-bordered text-center w-100">
+                        <thead>
+                            <tr>
+                                <th class="table-active" rowspan="3">No</th>
+                                <th class="table-active" rowspan="3">Provinsi</th>
+                                <th class="table-success" colspan="1">Positif</th>
+                                <th class="table-primary" colspan="2">Sembuh</th>
+                                <th class="table-danger" colspan="2">Meninggal</th>
+                            </tr>
+                            <tr>
+                                <th class="table-success" rowspan="2">Jumlah</th>
+                                <th class="table-primary" rowspan="2">Jumlah</th>
+                                <th class="table-primary" rowspan="2">Persentase</th>
+                                <th class="table-danger" rowspan="2">Jumlah</th>
+                                <th class="table-danger" rowspan="2">Persentase</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($countByProvince as $key => $data) {
+                                    $no = $key + 1;
+                                    echo '
+                                        <tr>
+                                            <td>'. $no .'</td>
+                                            <td>'. $data["province"] .'</td>
+                                            <td>'. $data["Total"] .'</td>
+                                            <td>'. $data["Sembuh"] .'</td>
+                                            <td>'. number_format((float)$data["Sembuh"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
+                                            <td>'. $data["Meninggal"] .'</td>
+                                            <td>'. number_format((float)$data["Meninggal"] / $data["Total"] * 100 , 2, '.', '') .'%</td>
+                                        </tr>
+                                    ';
+                                    if($no == 10){
+                                        break;
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    <table id="table_more" class="table-bordered text-center w-100 d-none">
                         <thead>
                             <tr>
                                 <th class="table-active" rowspan="3">No</th>
@@ -156,6 +191,7 @@
                             ?>
                         </tbody>
                     </table>
+                    <p class="text-center mt-3"><button id="view" class="btn button text-primary">View more</button></p>
                 </div>
             </div>
         </div>
